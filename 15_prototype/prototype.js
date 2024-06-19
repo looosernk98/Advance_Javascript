@@ -1,4 +1,5 @@
 /* 
+Prototypes are the mechanism by which JavaScript objects inherit features from one another.
 
 In JavaScript, every function and object has a property named prototype by default.
 
@@ -6,6 +7,10 @@ In JavaScript, every function and object has a property named prototype by defau
 
   1.All JavaScript objects inherit properties and methods from a prototype.
   2.you can not add a new property to an existing object constructor
+
+  Every object in JavaScript has a built-in property, which is called its prototype. The prototype is itself 
+  an object, so the prototype will have its own prototype, making what's called a prototype chain. The chain 
+  ends when we reach a prototype that has null for its own prototype.
 
 -> Date objects inherit from Date.prototype
 -> Array objects inherit from Array.prototype

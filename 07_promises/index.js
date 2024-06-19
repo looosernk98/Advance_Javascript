@@ -91,6 +91,31 @@ const promiseC = promiseA.then(handleFulfilled2, handleRejected2);
 */
 
 
+const prom = new Promise((resolveOuter) => {
+  resolveOuter(
+    new Promise((resolveInner, rejectInner) => {
+      setTimeout(() => {
+        // resolveInner("InnerResolver")
+        rejectInner("InnerReject")
+      }, 1000);
+    }),
+  );
+});
+console.log('prom: ', prom);
+
+prom.then((res) => {
+  console.log('res: ', res);
+  return res;
+})
+.then((res2) => {
+  console.log('res2: ', res2);
+})
+.catch((err) => {
+  console.log('err: ', err);
+})
+
+
+
 
 
   

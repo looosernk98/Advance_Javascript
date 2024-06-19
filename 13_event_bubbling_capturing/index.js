@@ -20,21 +20,21 @@
 
 // // bubbling phase
 
-document.querySelector('#grandparent')
-.addEventListener('click',()=>{
-   console.log('grandparent')
-})
+// document.querySelector('#grandparent')
+// .addEventListener('click',()=>{
+//    console.log('grandparent')
+// })
 
-document.querySelector('#parent')
-.addEventListener('click',()=>{
-   console.log('parent')
+// document.querySelector('#parent')
+// .addEventListener('click',()=>{
+//    console.log('parent')
 
-})
+// })
 
-document.querySelector('#child')
-.addEventListener('click',(e)=>{
-   console.log('child')
-})
+// document.querySelector('#child')
+// .addEventListener('click',(e)=>{
+//    console.log('child')
+// })
 
 // capturing or trickling  phase
 
@@ -47,21 +47,22 @@ document.querySelector('#grandparent')
 document.querySelector('#parent')
 .addEventListener('click',(e)=>{
    //  e.stopPropagation()
+    e.stopImmediatePropagation()
    //  e.stopPropagation()
    console.log('parent1')
 },true)
 
-// document.querySelector('#parent')
-// .addEventListener('onmouseover',()=>{
-//     console.log('onload event')
-// },true)
-
-
 document.querySelector('#child')
 .addEventListener('click',(e)=>{
-    
    console.log('child')
 },true)
+
+document.querySelector('#parent')
+.addEventListener('click',()=>{
+   // it will be stopped by stopImmediate propagation fn
+    console.log('onload event')
+},true)
+
 
 
 

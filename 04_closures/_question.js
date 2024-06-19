@@ -1,10 +1,26 @@
 // Q1. What is the output ?
 
-// for(let i = 0; i<=5; i++){
-//     setTimeout(() => {
-//       console.log('i: ', i);
-//     }, 1000)
-// }
+for(let i = 0; i<=5; i++){
+    setTimeout(() => {
+      console.log('i: ', i);
+    }, 1000)
+}
+/*
+
+let i;
+for( i = 0; i<=5; i++){
+   setTimeout(() => {
+     console.log('i: ', i);
+   }, 1000)
+}
+
+for(let i = 0; i<=5; i++){
+   function fn() {
+      console.log(i);
+   }
+    setTimeout(fn, 1000)
+}
+*/
 
 /*
 Explanation :
@@ -15,16 +31,17 @@ Explanation :
 */
 
 // Q2. Guess the ouput
-// for(var i = 0; i<=5; i++){
-//     setTimeout(() => {
-//       console.log('i: ', i);
-//     }, 1000)
-// }
+for(var i = 0; i<=5; i++){
+    setTimeout(() => {
+      console.log('i: ', i);
+    }, 1000)
+}
+
 /*
  Explanation :
  output - 6, 6, 6, 6, 6, 6
 
- as we know variable declared with var is blocked scope. so here every time 
+ as we know variable declared with var is not blocked scope. so here every time 
  callback fn forms a closure with i variable having same reference each time
 
 */

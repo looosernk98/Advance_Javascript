@@ -28,8 +28,25 @@
         <div id="key-pressed-count"></div>
         <div id="debounce-count"></div>
     </div>
+    <script>
+        let counter = 0;
+        const getData = (){
+            counter++;
+            console.log("API CALLED:", counter);
+        }
+        function debounce(cb, time){
+            let timer;
+            return () => {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    cb();
+                }, time)
+            }
+        }
+        const getSearchResults = debounce(getData, 3000)
+    </script>
 
-    <script src="index.js"></script>
+    <!-- <script src="index.js"></script> -->
 </body>
 
 </html>

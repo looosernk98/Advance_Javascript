@@ -14,6 +14,25 @@ function along with its lexical scope bundled together forms a closure
 USES of closures:
 1. Mudule design pattern
 2. hiding implemenation details - it can be useful to create private variables or functions.
+
+
+*******************  Why Closures Are Important *****************************
+Closures are important for several reasons:
+
+1. Data Encapsulation: Closures enable data encapsulation by allowing you to create 
+private variables and functions within a scope, shielding them from external access.
+
+2. Maintaining State: Closures can maintain state across multiple function calls. 
+This is useful for scenarios like event handlers and asynchronous code.
+
+3. Module Patterns: Closures are a key component in creating module patterns, which 
+help structure and organize code into reusable components.
+
+4. Callback Functions: Many callback functions in JavaScript are closures. They retain 
+access to variables from their parent scopes, which can be crucial for callback functionality.
+
+5. Memory Management: Closures play a role in managing memory. They ensure that variables 
+referenced by a closure are not garbage collected as long as the closure exists.
 */
 
 // Example 1 
@@ -77,17 +96,19 @@ console.log('CounterVal: ', CounterVal);
 
 function A(){
     var a = 8;
-
     B()
 }
 
 A()
-// outer scope of B is global not Function A. scope is always referred in terms of where the decalaration of function is written
+/* 
+  outer scope of B is global not Function A. scope is always referred in terms of 
+   where the decalaration of function is written
+*/
 function B(){ 
     console.log(a)
 }
 
-// Closure is usedful for hiding implementation details. See below example
+// Closure is useful for hiding implementation details. See below example
 var counterObject = (function() {
     var privateCounter = 0;
     function changeBy(val) {

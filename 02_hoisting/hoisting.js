@@ -12,6 +12,13 @@ hoisting : hoisting allows you to access variables and functions ecven before
 Variable hoisting means the JavaScript engine moves the variable declarations 
 to the top of the script(scope)
 
+Variable declarations are also hoisted, but there’s a crucial difference between 
+them and function declarations. When a variable is hoisted, only the declaration is 
+moved to the top, not the initialization. This means that the variable is accessible
+but undefined until it’s assigned a value.
+
+
+
 */
 
 console.log(counter); // undefined
@@ -61,7 +68,8 @@ function add(a, b) {
 /*
  During the creation phase of the execution context, the JavaScript engine 
  places the add() function declaration in the heap memory. To be precise, the 
- JavaScript engine creates an object of the Function type and a function reference add that refers to the function object.
+ JavaScript engine creates an object of the Function type and a function reference 
+ add that refers to the function object.
 
 */
 

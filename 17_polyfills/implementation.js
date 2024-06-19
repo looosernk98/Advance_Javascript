@@ -5,7 +5,7 @@
 // }
 
 Array.prototype.filter = function (fn, thisp) {
-    if (this === null) throw new TypeError();
+    // if (this === null) throw new TypeError();
     if (typeof fn !== "function") throw new TypeError();
     var result = [];
     for (var i = 0; i < this.length; i++) {
@@ -47,10 +47,10 @@ Array.prototype.filter = function (fn, thisp) {
     if (!callback || typeof callback !== "function") {
       throw Error("Callback provided is not a function");
     }
-  
-    if (!this) {
-      throw Error("can'\t call map on null or undefined ");
-    }
+    console.log("this: ", this)
+    // if (!this) {
+    //   throw Error("can'\t call map on null or undefined ");
+    // }
   
     let newArr = [];
   
@@ -98,9 +98,9 @@ Array.prototype.filter = function (fn, thisp) {
       throw Error("Callback provided is not a function");
     }
   
-    if (!this) {
-      throw Error("can'\t call filter on null or undefined ");
-    }
+    // if (!this) {
+    //   throw Error("can'\t call filter on null or undefined ");
+    // }
   
     let newArr = [];
   
@@ -151,7 +151,7 @@ Array.prototype.filter = function (fn, thisp) {
   let totalmarks = marks.myReduce((acc, curr) => {
     return acc + curr;
   }, 10);
-  console.log(totalmarks);
+  console.log(totalmarks); 
   
   //**************************************************** forEach ***************************************************************************/
   

@@ -13,34 +13,34 @@ function outerfunction(...args) {
     return innerFunction;
   }
   
-  // let innerFunc = outerfunction("niranjan", "kumar")
+  let innerFunc = outerfunction("niranjan", "kumar")
   
-  // innerFunc()
+  innerFunc()
   
   // ********************************************** exmaple 2 *******************************************************//
   
-  // function Counter(){
-  //     var counter = 0;
+  function Counter(){
+      var counter = 0;
   
-  //     setTimeout(() => {
-  //          counter+=1;
+      setTimeout(() => {
+           counter+=1;
   
-  //          var innerCounter = 0;
-  //          console.log("counter : ",counter);
+           var innerCounter = 0;
+           console.log("counter : ",counter);
   
-  //          setTimeout(()=>{
-  //             counter+=1;
-  //             innerCounter+=1;
+           setTimeout(()=>{
+              counter+=1;
+              innerCounter+=1;
   
-  //             console.log("couner : ",counter, " ", "innerCouneter",innerCounter);
-  //          },5000)
+              console.log("couner : ",counter, " ", "innerCouneter",innerCounter);
+           },5000)
   
-  //     }, 1000)
-  // }
+      }, 1000)
+  }
   
-  // for(let i=0; i<5; i++){
-  //     Counter()
-  // }
+  for(let i=0; i<5; i++){
+      Counter()
+  }
   
   // ***************************************** example 3 ***************************************************************//
   
@@ -62,7 +62,7 @@ function outerfunction(...args) {
     };
   })();
   
-  // //   console.log(counter)
+  //   console.log(counter)
   //   console.log(counter.value()); // 0
   //   counter.increment();
   //   counter.increment();
@@ -74,14 +74,12 @@ function outerfunction(...args) {
   
   function outer() {
     let arr = [];
-    // let i;
     let i;
     for (i = 0; i < 4; i++) {
       arr[i] = function () {
         return i;
       };
     }
-  
     return arr;
   }
   
@@ -111,12 +109,14 @@ function outerfunction(...args) {
     return arr;
   }
   
-  // let result = outer();
+  let results = outer();
   
-  // console.log(result[0]());
-  // console.log(result[1]());
-  // console.log(result[2]());
-  // console.log(result[3]());
+  console.log(results[0]());
+  console.log(results[1]());
+  console.log(results[2]());
+  console.log(results[3]());
+  
+  // **************************************************************************
   
   for(var i=1; i<=5; i++){
       setTimeout(()=>{

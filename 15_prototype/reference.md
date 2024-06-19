@@ -1,3 +1,5 @@
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
+
 https://www.programiz.com/javascript/prototype
 
 https://www.javascripttutorial.net/javascript-prototype/

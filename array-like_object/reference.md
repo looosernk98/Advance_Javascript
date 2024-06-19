@@ -1,0 +1,1 @@
+https://daily.dev/blog/why-do-you-need-to-know-about-array-like-objects
