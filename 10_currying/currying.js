@@ -63,12 +63,12 @@ console.log(curriedsum(1)(2, 3)); // 6, currying of 1st arg
 
 // console.log( callMe instanceof Object,callMe)
 
-const addCurry =(a) => {
-  return (b)=>{
-      return (c)=>{
-        console.log('c: ', c);
-          return a+b+c
-      }
-  }
-}
+// const addCurry =(a) => {
+//   return (b)=>{
+//       return (c)=>{
+//         console.log('c: ', c);
+//           return a+b+c
+//       }
+//   }
+// }
 console.log(addCurry(2)(3)(5)) // 10

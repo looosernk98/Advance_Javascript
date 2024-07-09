@@ -9,3 +9,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prot
 https://www.tutorialsteacher.com/javascript/prototype-in-javascript
 https://www.tutorialsteacher.com/javascript/class-in-javascript
 https://www.w3schools.com/js/js_object_definition.asp
+
+
+https://stackoverflow.com/questions/28600238/trying-to-understand-the-difference-between-prototype-and-constructor-in-javascr
+
+https://javascript.info/function-prototype

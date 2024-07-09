@@ -1,1 +1,1 @@
-https://javascript.info/property-descriptors
+<!-- https://javascript.info/property-descriptors -->

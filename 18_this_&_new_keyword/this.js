@@ -105,31 +105,41 @@ obj1Add(); // this will refer obj1 always
 //******************************* This in Async fn or Callback ******************************************/
 
 // "use strict"
-const user1 = {
-    age: 24,
-    regularMethod: function(){
-        console.log("Inside regular method: ", this); // this -> user1
-       setTimeout(function(){
-           // 'this' refers to global object or -----X---X--X--Not sure-------- undefined in case of strict mode
-          console.log("Regular method's this, Inside setTimeout: ", this);
-       }, 1000)
-    }
-}
+// const user1 = {
+//     age: 24,
+//     regularMethod: function(){
+//         console.log("Inside regular method: ", this); // this -> user1
+//        setTimeout(function a(){
+//            // 'this' refers to global object or -----X---X--X--Not sure-------- undefined in case of strict mode
+//           console.log("Regular method's this, Inside setTimeout: ", this);
+//        }, 1000)
+//     }
+// }
 
-user1.regularMethod()
+// user1.regularMethod()
 
 // "use strict"
 const user2 = {
     age: 27,
     arrowMethod:function(){
         console.log("Inside arrow method: ", this); // this -> user2
+        this.age = 28
+        this.name = "evi"
        setTimeout(() => {
           console.log("Arrow method's this, Inside setTimeout: ", this);
+          console.log("user2:", user2);
        }, 1000)
     }
 }
 
+
+
 user2.arrowMethod()
+// console.log('user2: ', user2);
+setTimeout(() => {
+    console.log("user2:", user2);
+
+},2000)
 
 //*******************************************************************************/
 //  "use strict"
@@ -154,9 +164,9 @@ const obj3 = {
         innerPrint() // now at the time of creation of arrow fn, obj3 was bind to this inside arrow fn
     }
  }
- obj3.print()
+ obj4.print()
 
-// "use strict"
+"use strict"
  const obj5 = {
     a:7,
     print: () => {
@@ -165,7 +175,7 @@ const obj3 = {
  }
  obj5.print()
  
-// "use strict"
+"use strict"
  const obj6 = {
     a:7,
     print: function(){

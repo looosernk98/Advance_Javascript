@@ -35,7 +35,7 @@ function Person(first, last, age, eyecolor) {
     this.lastName = last;
     this.age = age;
     this.eyeColor = eyecolor;
-  }
+}
   
   Person.prototype.nationality = "English";
   
@@ -43,6 +43,25 @@ function Person(first, last, age, eyecolor) {
   Person.prototype.name = function() {
     return this.firstName + " " + this.lastName;
   };
+  const per = new Person("niru", "kumar",23,"red")
+  // console.log('per: ', per);
+  console.log(Object.getPrototypeOf(per));
+  // per.__proto__ = {
+  //   hello:function(){
+  //     console.log("hello");
+  //   }
+  // }
+  Object.setPrototypeOf(per, {
+    hello:function(){
+      console.log("hello");
+    }
+  })
+  console.log("PROTO:", Object.getPrototypeOf(per));
+  const per2 = new Person("pta", "kumar",26,"greebn")
+  // console.log('per2: ', per2);
+  // console.log(Object.getPrototypeOf(per2));
+
+
   
   // Only modify your own prototypes. Never modify the prototypes of standard JavaScript objects.
   
@@ -139,3 +158,5 @@ function Person(first, last, age, eyecolor) {
   
   // accessing prototype property
   console.log(user.__proto__);   // { age: 24 }
+
+  console.log(User.__proto__);

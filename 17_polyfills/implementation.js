@@ -125,14 +125,14 @@ Array.prototype.filter = function (fn, thisp) {
   
   let marks = [10, 20, 30];
   
-  Array.prototype.myReduce = function (callback, initial) {
+  Array.prototype.myReduce =  function(callback, initial) {
     if (!callback || typeof callback !== "function") {
       throw Error("Callback provided is not a function");
     }
-  
-    if (!this) {
-      throw Error("can'\t call reduce on null or undefined ");
-    }
+  console.log(this);
+    // if (!this) {
+    //   throw Error("can'\t call reduce on null or undefined ");
+    // }
   
     let accumulator = initial || this[0];
   

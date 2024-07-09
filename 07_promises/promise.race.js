@@ -7,7 +7,7 @@ single Promise. This returned promise settles with the eventual state of the fir
 
 const promise1 = new Promise((resolve, reject) => {
     setTimeout(resolve, 500, 'one');
-  });
+});
   
   const promise2 = new Promise((resolve, reject) => {
     setTimeout(reject, 100, 'two');

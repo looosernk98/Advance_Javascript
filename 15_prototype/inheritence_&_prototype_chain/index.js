@@ -1,3 +1,21 @@
+/*
+
+In programming, inheritance refers to passing down characteristics from a parent 
+to a child so that a new piece of code can reuse and build upon the features of an 
+existing one. JavaScript implements inheritance by using objects. Each object has an 
+internal link to another object called its prototype. That prototype object has a 
+prototype of its own, and so on until an object is reached with null as its prototype. 
+By definition, null has no prototype and acts as the final link in this prototype 
+chain. It is possible to mutate any member of the prototype chain or even swap out 
+the prototype at runtime, so concepts like static dispatching do not exist in 
+JavaScript.
+
+
+
+
+
+*/
+
 
 // *********************** Inheriting properties ********************
 const o = {
@@ -23,9 +41,9 @@ const o = {
 // *********************** Inheriting "methods" ********************
   
 /*
-When an inherited function is executed, the value of this points to
+ When an inherited function is executed, the value of this points to
  the inheriting object, not to the prototype object where the function
-  is an own property.
+ is an own property.
 
 */
 
@@ -68,15 +86,17 @@ const parent = {
     }
   }
 
-//   console.log("BOOLEAN:", Object.getPrototypeOf(user) == user.__proto__);
-//   console.log('user.__proto__: ', user.__proto__);
-//   console.log('user.prototype: ', user.prototype);
-//   console.log('Object.getPrototypeOf(user): ', Object.getPrototypeOf(user));
+  console.log("BOOLEAN:", Object.getPrototypeOf(user) == user.__proto__);
+  console.log('user.__proto__: ', user.__proto__);
+  console.log('user.prototype: ', user.prototype);
+  console.log('Object.getPrototypeOf(user): ', Object.getPrototypeOf(user));
+
   function User(name){
     // Every instance created from a constructor function will automatically have the constructor's prototype 
     this.name = name
   }
-const user1 = new User("abcd")
+  // Object.assign(User.prototype, { age: 24})
+  const user1 = new User("abcd")
   console.log('user1.prototype: ',user1.prototype);
   console.log("user1.__proto__: ",user1.__proto__);
   console.log("User.prototype:",User.prototype);

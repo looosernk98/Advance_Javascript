@@ -86,6 +86,8 @@ function resolveAfter2Seconds() {
     const fast = await resolveAfter1Second();
     console.log(fast); // 3. this runs 3 seconds after 1.
   }
+  // sequentialStart(); // after 2 seconds, logs "slow", then after 1 more second, "fast"
+
   
   async function concurrentStart() {
     console.log("==CONCURRENT START with await==");
@@ -106,6 +108,8 @@ function resolveAfter2Seconds() {
       }
     );
   }
+
+  concurrentPromise()
   
   async function parallel() {
     console.log("==PARALLEL with await Promise.all==");

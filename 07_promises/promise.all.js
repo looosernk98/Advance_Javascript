@@ -14,7 +14,8 @@ const promise3 = new Promise((resolve, reject) => {
     new Promise((innerRes,innerRej) => {
         innerRes(
             new Promise((res2, rej2) => {
-                rej2("innerRes 2")
+                res2("foo")
+                // rej2("innerRes 2")
             })
         )
      })
@@ -49,7 +50,7 @@ setTimeout(() => {
   console.log(p1);
   console.log(p2);
   console.log(p3);
-});
+},1000);
 
 // Logs:
 // Promise { <state>: "fulfilled", <value>: Array[3] }

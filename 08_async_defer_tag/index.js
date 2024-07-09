@@ -11,9 +11,13 @@
   -> fetching the scripts from network
   -> executing script line by line
 
-  he async and defer attributes both allow the browser to continue parsing the HTML document while JavaScript files are being downloaded, but they differ in when those files are executed.
+  the async and defer attributes both allow the browser to continue parsing the HTML 
+  document while JavaScript files are being downloaded, but they differ in when 
+  those files are executed.
 
-Async downloads and executes JavaScript as soon as it’s available, while defer attribute waits until the HTML document has been parsed before downloading and executing any external scripts.
+ Async downloads and executes JavaScript as soon as it’s available, while defer 
+ attribute waits until the HTML document has been parsed before downloading and 
+ executing any external scripts.
 
 */
 

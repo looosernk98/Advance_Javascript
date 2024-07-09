@@ -14,3 +14,8 @@
   we can add an event listener to a parent element and call an event on a 
   particular target using the . target property of the event object.
 */
+
+
+document.querySelector('.parent').addEventListener('click', (e) => {
+  console.log(e.target);
+})

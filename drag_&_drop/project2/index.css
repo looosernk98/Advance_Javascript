@@ -1,0 +1,15 @@
+.container{
+    border: 1px solid;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    width: 400px;
+}
+
+.item{
+    padding: 10px;
+    /* border: 1px solid; */
+    background-color: rgb(218, 255, 243);
+}

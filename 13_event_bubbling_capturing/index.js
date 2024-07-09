@@ -18,50 +18,50 @@
 
 
 
-// // bubbling phase
-
-// document.querySelector('#grandparent')
-// .addEventListener('click',()=>{
-//    console.log('grandparent')
-// })
-
-// document.querySelector('#parent')
-// .addEventListener('click',()=>{
-//    console.log('parent')
-
-// })
-
-// document.querySelector('#child')
-// .addEventListener('click',(e)=>{
-//    console.log('child')
-// })
-
-// capturing or trickling  phase
+// bubbling phase
 
 document.querySelector('#grandparent')
-.addEventListener('click',(e)=>{
-
+.addEventListener('click',()=>{
    console.log('grandparent')
-},true)
+})
 
 document.querySelector('#parent')
-.addEventListener('click',(e)=>{
-   //  e.stopPropagation()
-    e.stopImmediatePropagation()
-   //  e.stopPropagation()
-   console.log('parent1')
-},true)
+.addEventListener('click',()=>{
+   console.log('parent')
+
+})
 
 document.querySelector('#child')
 .addEventListener('click',(e)=>{
    console.log('child')
-},true)
+})
 
-document.querySelector('#parent')
-.addEventListener('click',()=>{
-   // it will be stopped by stopImmediate propagation fn
-    console.log('onload event')
-},true)
+// capturing or trickling  phase
+
+// document.querySelector('#grandparent')
+// .addEventListener('click',(e)=>{
+
+//    console.log('grandparent')
+// },true)
+
+// document.querySelector('#parent')
+// .addEventListener('click',(e)=>{
+//    //  e.stopPropagation()
+//     e.stopImmediatePropagation()
+//    //  e.stopPropagation()
+//    console.log('parent1')
+// },true)
+
+// document.querySelector('#child')
+// .addEventListener('click',(e)=>{
+//    console.log('child')
+// },true)
+
+// document.querySelector('#parent')
+// .addEventListener('click',()=>{
+//    // it will be stopped by stopImmediate propagation fn
+//     console.log('onload event')
+// },true)
 
 
 

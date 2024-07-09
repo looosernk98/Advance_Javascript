@@ -17,6 +17,7 @@ const parent = {
 
 //Call and bind
 function person(name, age) {
+  console.log('this:', this);
     this.name = name;
     this.age = age;
   }
@@ -32,6 +33,7 @@ function person(name, age) {
   }
   
   let student = new student_marks("Vineet", 20, "Maths", 27);
+  console.log('student: ', student);
   console.log(
     `${student.name} has got ${get_percentage.call(student)} in ${
       student.subject
@@ -60,10 +62,12 @@ function person(name, age) {
   }
   
   function get_percentage() {
+    console.log('this: ', this);
     return this.marks / 99;
   }
   
   let student2 = new student_marks("Vineet", 20, "Maths", 27);
+  console.log('student2: ', student2);
   console.log(
     `${student2.name} has got ${student2.get_percentage()} in ${
         student2.subject
@@ -126,19 +130,20 @@ console.log(person.prototype.constructor == person)
     return this.value;
   };
   const box = new Box(1);
-  const box1 = new Box(2);
   
   // Mutate Box.prototype after an instance has already been created
   Box.prototype.getValue = function () {
     return this.value * 2;
   };
+  const box1 = new Box(2);
   
   console.log("box value after mutating", box.getValue());
   console.log("box1 value after mutating", box1.getValue());
 
   //**************************************************************************************/
 
-  function doSomething() {}
+function doSomething() {}
+
 doSomething.prototype.foo = "bar";
 const doSomeInstancing = new doSomething();
 doSomeInstancing.prop = "some value";

@@ -95,9 +95,9 @@ const prom = new Promise((resolveOuter) => {
   resolveOuter(
     new Promise((resolveInner, rejectInner) => {
       setTimeout(() => {
-        // resolveInner("InnerResolver")
-        rejectInner("InnerReject")
-      }, 1000);
+        resolveInner("InnerResolver")
+        // rejectInner("InnerReject")
+      }, 5000);
     }),
   );
 });

@@ -78,10 +78,10 @@ function Counter() {
 }
 
 var counter = Counter();
-alert(counter()); // 1
-alert(counter()); // 2
-alert(counter()); // 3
-alert(counter()); // 4
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+console.log(counter()); // 4
 
 
 // Example 4 - The following is not a closure.
