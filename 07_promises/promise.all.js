@@ -84,6 +84,7 @@ setTimeout(() => {
 // NOTE: Promise.all resolves synchronously if and only if the iterable passed is empty:
 const pp = Promise.all([]); // Will be immediately resolved
 const pp2 = Promise.all([1337, "hi"]); // Non-promise values are ignored, but the evaluation is done asynchronously
+
 console.log(pp);
 console.log(pp2);
 setTimeout(() => {

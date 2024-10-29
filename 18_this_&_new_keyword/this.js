@@ -5,7 +5,7 @@
        Non Strict Mode                      |         Strict Mode
     1. If a function is present in object   | 1. If a function is present in object
        this will refer to object in which   |    this will refer to global object                                      
-       fuction is deinfed                   |
+       fuction is defined                   |
     2. In global scope , this refers to     | 2. In global scope , this refers to
        global(window) object                |   global(window) onject
     3. we can change the reference of this  | 3. we can change the reference of this
@@ -50,6 +50,7 @@ print() // fn was called w.r.t global scope
 
 window.print() // fn was called w.r.t window object so this will refer to window
 
+// "strict mode"
 // function in object
 let object = {
    name: "Alex",
@@ -105,20 +106,20 @@ obj1Add(); // this will refer obj1 always
 //******************************* This in Async fn or Callback ******************************************/
 
 // "use strict"
-// const user1 = {
-//     age: 24,
-//     regularMethod: function(){
-//         console.log("Inside regular method: ", this); // this -> user1
-//        setTimeout(function a(){
-//            // 'this' refers to global object or -----X---X--X--Not sure-------- undefined in case of strict mode
-//           console.log("Regular method's this, Inside setTimeout: ", this);
-//        }, 1000)
-//     }
-// }
+const user1 = {
+    age: 24,
+    regularMethod: function(){
+        console.log("Inside regular method: ", this); // this -> user1
+       setTimeout(function(){
+           // 'this' refers to global object or -----X---X--X--Not sure-------- undefined in case of strict mode
+          console.log("Regular method's this, Inside setTimeout: ", this);
+       }, 1000)
+    }
+}
 
-// user1.regularMethod()
+user1.regularMethod()
 
-// "use strict"
+"use strict"
 const user2 = {
     age: 27,
     arrowMethod:function(){
@@ -131,8 +132,6 @@ const user2 = {
        }, 1000)
     }
 }
-
-
 
 user2.arrowMethod()
 // console.log('user2: ', user2);
@@ -154,7 +153,7 @@ const obj3 = {
  }
  obj3.print()
 
- // using arrow
+//  using arrow
  const obj4 = {
     a: 4,
     print: function(){

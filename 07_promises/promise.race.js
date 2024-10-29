@@ -24,8 +24,8 @@ const promise1 = new Promise((resolve, reject) => {
   // Expected output: "two"
 
   /*
-  Unlike other promise concurrency methods, Promise.race is always asynchronous: it never settles synchronously,
-   even when the iterable is empty.
+  Unlike other promise concurrency methods, Promise.race is always asynchronous: it 
+  never settles synchronously,even when the iterable is empty.
 
   */
   

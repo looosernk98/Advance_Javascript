@@ -1,10 +1,12 @@
 // Q1. What is the output ?
 
-for(let i = 0; i<=5; i++){
+for(var i = 0; i<=5; i++){
     setTimeout(() => {
       console.log('i: ', i);
     }, 1000)
 }
+
+// output : 6, 6, 6, 6, 6, 6
 /*
 
 let i;
@@ -13,6 +15,7 @@ for( i = 0; i<=5; i++){
      console.log('i: ', i);
    }, 1000)
 }
+// output : 6, 6, 6, 6, 6, 6
 
 for(let i = 0; i<=5; i++){
    function fn() {

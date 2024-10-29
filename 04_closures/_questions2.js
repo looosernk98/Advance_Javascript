@@ -76,7 +76,7 @@ function outerfunction(...args) {
     let arr = [];
     let i;
     for (i = 0; i < 4; i++) {
-      arr[i] = function () {
+      arr[i] = function () { // is it a closure ????
         return i;
       };
     }
@@ -85,11 +85,11 @@ function outerfunction(...args) {
   
   let result = outer();
   
-  console.log("*******", result[0]());
-  console.log(result[1]());
-  console.log(result[2]());
-  console.log(result[3]());
-  
+  console.log("*******", result[0]()); // 4
+  console.log(result[1]()); // 4
+  console.log(result[2]()); // 4
+  console.log(result[3]()); // 4
+   
   //*************************************************** example 5 ***********************************************************************/
   
   function outer() {
@@ -111,10 +111,10 @@ function outerfunction(...args) {
   
   let results = outer();
   
-  console.log(results[0]());
-  console.log(results[1]());
-  console.log(results[2]());
-  console.log(results[3]());
+  console.log(results[0]()); // 0
+  console.log(results[1]()); // 1
+  console.log(results[2]()); // 2
+  console.log(results[3]()); // 3
   
   // **************************************************************************
   

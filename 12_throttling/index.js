@@ -50,17 +50,18 @@ divBodyDom.addEventListener('scroll', function () {
 
 	// Throttles makeAPICall method such that it is called once in every 1000 milliseconds
 	throttleFunction(makeAPICall, 1000)
+	// throttle(makeAPICall,1000 )
 })
 
 
-// let timerId;
+// let timer;
 // function throttle(cb, delay){
-//     if(timerId) return;
-//     return () => {
-//        timerId = setTimeout(() => {
+//     if(timer) return;
+//     // return () => {
+//        timer = setTimeout(() => {
 //          cb()
-//          timerId = undefined;
+//          timer = undefined;
 //        }, delay)
-//     }
+//     // }
 // }
 

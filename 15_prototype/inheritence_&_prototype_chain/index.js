@@ -5,6 +5,7 @@ to a child so that a new piece of code can reuse and build upon the features of 
 existing one. JavaScript implements inheritance by using objects. Each object has an 
 internal link to another object called its prototype. That prototype object has a 
 prototype of its own, and so on until an object is reached with null as its prototype. 
+
 By definition, null has no prototype and acts as the final link in this prototype 
 chain. It is possible to mutate any member of the prototype chain or even swap out 
 the prototype at runtime, so concepts like static dispatching do not exist in 
@@ -95,7 +96,7 @@ const parent = {
     // Every instance created from a constructor function will automatically have the constructor's prototype 
     this.name = name
   }
-  // Object.assign(User.prototype, { age: 24})
+  Object.assign(User.prototype, { age: 24})
   const user1 = new User("abcd")
   console.log('user1.prototype: ',user1.prototype);
   console.log("user1.__proto__: ",user1.__proto__);

@@ -15,8 +15,28 @@ the async function.
 
 */
 
+console.log("first");
 
+async function Hello(){
+  console.log("second");
+  const res = await Promise.resolve("third")
+  console.log('res: ', res);
+  console.log("fourth");
+}
+Hello()
 
+console.log("fifth");
+
+/*
+Output:
+
+  first
+  second
+  fifth
+  res:  third
+  fourth
+
+*/
 
 
 /*
@@ -30,14 +50,18 @@ It can be a problem when you want to check the equality of a promise and a retur
 const p = new Promise((res, rej) => {
     res(1);
   });
+
+  console.log('p: ', p);
   
   async function asyncReturn() {
     return p;
   }
-  
+  console.log(asyncReturn())
+
   function basicReturn() {
     return Promise.resolve(p);
   }
+  console.log(basicReturn())
   
   console.log(p === basicReturn()); // true
   console.log(p === asyncReturn()); // false
@@ -104,6 +128,8 @@ const p = new Promise((res, rej) => {
   
     console.log("== sequentialStart done ==");
   }
+  // sequentialStart()
+
   
   async function sequentialWait() {
     console.log("== sequentialWait starts ==");
@@ -119,6 +145,8 @@ const p = new Promise((res, rej) => {
   
     console.log("== sequentialWait done ==");
   }
+  sequentialWait()
+
   
   async function concurrent1() {
     console.log("== concurrent1 starts ==");

@@ -1,5 +1,6 @@
 /*
-Debouncing is a technique used to control how many times we allow a function to be executed over time.
+Debouncing is a technique used to control how many times we allow a function 
+to be executed over time.
 
 Debouncing is used for performance optimization by limiting the rate of excecution
 of particular function or api
@@ -28,9 +29,10 @@ const debounce = (callback,delay)=>{
       // console.log("context", context)
       // let args = arguments;
       // console.log('arguments: ', arguments);
-      clearTimeout(timerId)
+      clearTimeout(timerId) // clearing the previous timer
 
-      timerId = setTimeout(()=>{
+      // assigning a new timer if user tak a pause of delay time then this timer will not clear and will execute the cb of setTimeout
+      timerId = setTimeout(()=>{ 
         callback()
       },delay)
   }

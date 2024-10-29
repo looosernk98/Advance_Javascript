@@ -13,6 +13,7 @@
  Ans CSS behaves differently on different browsers because each browser has its 
      implementation of the CSS specifications.This can result in variations in 
      how the browser interprets the CSS code and renders the web page
+
  Q4. Tell us about the use of the CSS Box Model
  Ans. The CSS box model is essentially a box that wraps around every HTML element.
       It consists of: content, padding, borders and margins. The image below illustrates
@@ -68,6 +69,7 @@ const input = [
     },
 ]
 
+
 /*
 EXPECTED OUTPUT
 
@@ -103,6 +105,18 @@ input.forEach((item, index) => {
 })
 console.log('output: ', output);
 
+/******************************************************************************/
+/*
+ Q. Does setTimeout always runs after delay time provided ?
+    No, setTimeout() will not always run after the delay time, and it can take 
+    more time than the delay time
+    The delay parameter in setTimeout() only guarantees that the callback 
+    function will not execute before the specified time. Other tasks or 
+    operations in the queue could delay the execution further.
 
+Q. Does setInterval always runs after delay time provided ?
+   Yes, the setInterval() function in JavaScript will always run after the 
+   delay time, but the function it executes can take longer than the delay time
+*/
 
 
