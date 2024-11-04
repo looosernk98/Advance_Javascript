@@ -37,8 +37,9 @@ Promise.any(promises).then((value) => console.log(value));
 
 /*
 
-Promise.any() fulfills with the first promise to fulfill, even if a promise rejects first. 
-This is in contrast to Promise.race(), which fulfills or rejects with the first promise to settle.
+Promise.any() fulfills with the first promise to fulfill, even if a promise 
+rejects first. This is in contrast to Promise.race(), which fulfills or rejects
+with the first promise to settle.
 
 */
 

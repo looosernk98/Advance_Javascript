@@ -1,9 +1,9 @@
-const obj1 = {
+const protoObject = {
   name:"rahul",
   ag:23
 }
 
-const obj2 = {
+const propertiesObject = {
   state:{
     writable: true,
     configurable: true,
@@ -11,7 +11,7 @@ const obj2 = {
   },
 }
 
-const newObj = Object.create(obj1, obj2)
+const newObj = Object.create(protoObject, propertiesObject)
 newObj.male = true
 console.log('newObj: ', newObj);
 console.log('newObj prototype: ', newObj.__proto__);

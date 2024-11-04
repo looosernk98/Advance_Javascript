@@ -18,7 +18,8 @@ if it was successful, or the ‘rejected’ state if an error occurred.
 Once a promise is either fulfilled or rejected, it becomes settled and its 
 state cannot change again
 
-A promise is said to be settled if it is either fulfilled or rejected, but not pending.
+A promise is said to be settled if it is either fulfilled or rejected, but 
+not pending.
 
 */
 

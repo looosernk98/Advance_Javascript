@@ -1,7 +1,6 @@
 // ********************************** QUESTION 1*********************************************
-  const add = (...args) => JSON.parse()
+  const add = (...args) => JSON.parse(args).reduce((acc, item) => acc + item, 0)
 
-  const memoizedAdd = memoizedOne(add);
 
   const map = new Map();
 
@@ -21,8 +20,11 @@
        return value;
      }
   }
+
+  const memoizedAdd = memoizedOne(add);
+
   
-  console.log(memoizedAdd(1,2, 3) )// 3
+  console.log(memoizedAdd(1,2, 3))// 3
   // add fn is called to get new value
 
   console.log(memoizedAdd(1,2,3)) // 3

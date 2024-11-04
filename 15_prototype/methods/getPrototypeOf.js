@@ -1,4 +1,5 @@
 function Rabbit() {}
+
 Rabbit.prototype = {
   eats: true
 };
@@ -14,8 +15,8 @@ Rabbit.prototype = {
   eats: true
 };
 
-let rabbit = new Rabbit();
+let rabbit2 = new Rabbit();
 
-delete rabbit.eats;
+delete rabbit2.eats;
 
-console.log( rabbit.eats ); // ?
+console.log( rabbit2.eats ); // ?

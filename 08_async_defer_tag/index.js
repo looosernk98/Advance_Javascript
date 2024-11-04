@@ -3,7 +3,7 @@
  async and defer are a boolean attribute which are used along with script tag 
  to load external scripts efficiently in our web page
 
- when a load a page , two major things happen are :
+ when we load a page , two major things happen are :
  1. HTML parsing
  2. Script Loading 
 
@@ -23,7 +23,7 @@
 
 
 //**************************** Normal Case ( Without async or defer) ************/
-{/* 
+/* 
 
     <p>...content before script...</p>
     
@@ -35,7 +35,7 @@
     <p>...content after script...</p>
 
     NOTE : here JS/browser is blocking the rendering of HTML
-*/}
+*/
 
 
 // ************************ async attribute ******************************
@@ -86,23 +86,17 @@
 
 /*
 
-The async and defer attributes both allow the browser to continue parsing the 
-HTML document while JavaScript files are being downloaded, but they differ in 
-when those files are executed.
-
-Async downloads and executes JavaScript as soon as it’s available, while defer 
-attribute waits until the HTML document has been parsed before downloading and 
-executing any external scripts.
 
 
+ 
+	         Order	                                         DOMContentLoaded
+                                              
+async	 Load-first order. Their document order          Irrelevant. May load and execute while the document has not yet been fully downloaded.
+       doesn’t matter – which loads first runs first	 That happens if scripts are small or cached, and the document is long enough.
 
-	    Order	                                       DOMContentLoaded
-async	Load-first order. Their document order          Irrelevant. May load and execute while the document has not yet been fully downloaded.
-       doesn’t matter – which loads first runs first	That happens if scripts are small or cached, and the document is long enough.
 
-
-defer	Document order (as they go in the document).	Execute after the document is loaded and parsed (they wait if needed),
-                                                        right before DOMContentLoaded.
+defer	 Document order (as they go in the document).	   Execute after the document is loaded and parsed (they wait if needed),
+                                                       right before DOMContentLoaded.
 
 
 */

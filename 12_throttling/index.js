@@ -54,14 +54,15 @@ divBodyDom.addEventListener('scroll', function () {
 })
 
 
-// let timer;
 // function throttle(cb, delay){
-//     if(timer) return;
-//     // return () => {
-//        timer = setTimeout(() => {
-//          cb()
-//          timer = undefined;
-//        }, delay)
-//     // }
+//     let timer;
+//     return function(){
+//         if(timer) return;
+//         timer = setTimeout(() => {
+//             cb()
+//             timer = undefined
+//         }, delay)
+//     }
 // }
+
 

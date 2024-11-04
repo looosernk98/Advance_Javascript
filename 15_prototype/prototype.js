@@ -4,7 +4,8 @@ features from one another.
 
 In JavaScript, every function and object has a property named prototype by default.
 
-  ==> only functions provide prototype as property (prototype is like a free space and emptyy object)
+  ==> only functions provide prototype as property (prototype is like a free 
+      space and empty object)
 
   1.All JavaScript objects inherit properties and methods from a prototype.
   2.you can not add a new property to an existing object constructor
@@ -22,13 +23,10 @@ The Object.prototype is on the top of the prototype inheritance chain:
 
 Date objects, Array objects, and Person objects inherit from Object.prototype
 
-
-
-
-
 */
 
-// Sometimes you want to add new properties (or methods) to all existing objects of a given type.
+// Sometimes you want to add new properties (or methods) to all existing objects 
+// of a given type.
 
 // Sometimes you want to add new properties (or methods) to an object constructor.
 
@@ -161,4 +159,7 @@ function Person(first, last, age, eyecolor) {
   // accessing prototype property
   console.log(user.__proto__);   // { age: 24 }
 
-  console.log(User.__proto__); // wrong , User is a constructor function, not object so can't access it's prototype using proto and getProtoTypeOf. you can access using prototype property
+
+// wrong, User is a constructor function, not object so can't access it's prototype 
+// using proto and getProtoTypeOf. you can access using prototype property
+  console.log(User.__proto__); 

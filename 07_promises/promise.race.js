@@ -1,7 +1,8 @@
 /*
 
-The Promise.race() static method takes an iterable of promises as input and returns a 
-single Promise. This returned promise settles with the eventual state of the first promise that settles.
+The Promise.race() static method takes an iterable of promises as input and 
+returns a single Promise. This returned promise settles with the eventual state 
+of the first promise that settles.
 
 */
 
@@ -51,6 +52,7 @@ setTimeout(() => {
 
 // An empty iterable causes the returned promise to be forever pending:
 const foreverPendingPromise = Promise.race([]);
+foreverPendingPromise.then((res) => console.log('output: ', res)).catch((err) => console.log(err))
 console.log(foreverPendingPromise);
 setTimeout(() => {
   console.log("the stack is now empty");

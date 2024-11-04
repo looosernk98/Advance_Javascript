@@ -23,7 +23,8 @@ if (!Math.trunc) { // if no such function
 
 /* 
 
-how to make our modern code work on older engines that don’t understand recent features yet?
+how to make our modern code work on older engines that don’t understand recent 
+features yet?
 
 There are two tools for that:
 1. Transpilers

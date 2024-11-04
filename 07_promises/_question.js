@@ -13,6 +13,9 @@ https://www.codingame.com/playgrounds/347/javascript-promises-mastering-the-asyn
 let promise = new Promise(function(resolve, reject) {
     resolve(1);
     setTimeout(() => reject(2), 1000);
+    
+    // setTimeout(() => reject(2), 1000);
+    // resolve(1);
   });
   
 promise.then((res) => {

@@ -11,10 +11,6 @@ chain. It is possible to mutate any member of the prototype chain or even swap o
 the prototype at runtime, so concepts like static dispatching do not exist in 
 JavaScript.
 
-
-
-
-
 */
 
 
@@ -91,18 +87,6 @@ const parent = {
   console.log('user.__proto__: ', user.__proto__);
   console.log('user.prototype: ', user.prototype);
   console.log('Object.getPrototypeOf(user): ', Object.getPrototypeOf(user));
-
-  function User(name){
-    // Every instance created from a constructor function will automatically have the constructor's prototype 
-    this.name = name
-  }
-  Object.assign(User.prototype, { age: 24})
-  const user1 = new User("abcd")
-  console.log('user1.prototype: ',user1.prototype);
-  console.log("user1.__proto__: ",user1.__proto__);
-  console.log("User.prototype:",User.prototype);
-
-
 
 
   //****************************************************************************************/

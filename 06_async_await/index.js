@@ -1,19 +1,58 @@
 /*
-The async function declaration creates a binding of a new async function to a given
- name. The await keyword is permitted within the function body, enabling asynchronous, 
- promise-based behavior to be written in a cleaner style and avoiding the need to 
- explicitly configure promise chains
-
-An async function declaration creates an AsyncFunction object. Each time when an 
-async function is called, it returns a new Promise which will be resolved with the 
-value returned by the async function, or rejected with an exception uncaught within 
-the async function.
+async and await are used to handle asynchronous operations in JavaScript in a 
+more readable and intuitive way compared to using Promises and .then() chains.
 
  Note: The purpose of async/await is to simplify the syntax necessary to consume 
  promise-based APIs. The behavior of async/await is similar to combining generators 
  and promises.
 
 */
+
+// ********************* 1. What is async? *************************
+/*
+   -> async is a keyword used to declare an asynchronous function.
+   -> An async function always returns a Promise, even if you don't explicitly 
+   return a Promise. If a value is returned from the async function, JavaScript 
+   wraps it in a Promise that resolves to that value.
+*/
+
+   async function exampleFunction() {
+     return "Hello, world!";
+   }
+
+  // Using the function:
+  exampleFunction().then(value => {
+    console.log(value); // Output: "Hello, world!"
+  });
+
+//********************** What is await?  **************************/
+/*
+ -> await is used to wait for a Promise to resolve.
+ -> await can only be used inside an async function.
+ -> When await is used, the code execution is paused until the Promise is 
+    resolved. Once resolved, the execution continues with the resolved value.
+*/
+
+async function fetchData() {
+  const data = await fetch("https://api.example.com/data");
+  const json = await data.json();
+  console.log(json);
+}
+
+/*
+Benefits of async/await:
+
+1. Readability: Code using async/await is easier to read and understand than 
+                chained Promises.
+2. Error Handling: Using try and catch blocks around await makes error handling 
+                 more straightforward.
+3. Cleaner Code: Avoids deeply nested .then() chains, leading to more 
+                 maintainable and organized code.
+*/
+
+
+
+//=================================================================================
 
 console.log("first");
 
@@ -40,42 +79,46 @@ Output:
 
 
 /*
-Even though the return value of an async function behaves as if it's wrapped in a Promise.resolve, they are not equivalent.
+Even though the return value of an async function behaves as if it's wrapped in 
+a Promise.resolve, they are not equivalent.
 
-An async function will return a different reference, whereas Promise.resolve returns the same reference if the given value is a promise.
+An async function will return a different reference, whereas Promise.resolve 
+returns the same reference if the given value is a promise.
 
-It can be a problem when you want to check the equality of a promise and a return value of an async function.
+It can be a problem when you want to check the equality of a promise and a 
+return value of an async function.
 */
 
 const p = new Promise((res, rej) => {
     res(1);
   });
 
-  console.log('p: ', p);
+  console.log('p: ', p); // output: promise with resolved to value 1
   
   async function asyncReturn() {
     return p;
   }
-  console.log(asyncReturn())
+  console.log('asyncReturn:', asyncReturn())
 
   function basicReturn() {
     return Promise.resolve(p);
   }
-  console.log(basicReturn())
+  console.log('basicReturn:', basicReturn())
   
   console.log(p === basicReturn()); // true
   console.log(p === asyncReturn()); // false
 
   
-  // *************************************************
+  // *******************************************************************//
+
   async function foo() {
     return await 1;
   }
-  console.log(foo())
+  console.log(foo()) // pending promise
   foo().then((res) => console.log(res))
   
 
-  // *******************************************************************
+// *******************************************************************
   console.log('BEFORE');
   async function foo() {
     const result1 = await new Promise((resolve) =>

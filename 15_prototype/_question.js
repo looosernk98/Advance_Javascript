@@ -95,31 +95,6 @@ String.prototype + "a"; // "a"
 RegExp.prototype.source; // "(?:)"
 Function.prototype()
 
-//Call and bind
-function person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-
-function student_marks(name, age, subject, marks) {
-  person.call(this, name, age);
-  this.subject = subject;
-  this.marks = marks;
-}
-
-function get_percentage() {
-  return this.marks / 99;
-}
-
-student_marks.prototype = person.prototype;
-console.log(student_marks.prototype == person.prototype);
-console.log(student_marks.prototype.__proto__ == Object.prototype);
-console.log(student_marks.__proto__ == Function.prototype);
-console.log(person.prototype.__proto__.__proto__ == null);
-console.log(person.prototype.constructor == person)
-
-
-
 
   //**************************************************************************************/
   function Box(value) {
@@ -129,7 +104,7 @@ console.log(person.prototype.constructor == person)
   Box.prototype.getValue = function () {
     return this.value;
   };
-  const box = new Box(1);
+  const box = new Box(2);
   
   // Mutate Box.prototype after an instance has already been created
   Box.prototype.getValue = function () {

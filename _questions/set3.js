@@ -53,6 +53,28 @@ const obj2 = {
 
 console.log(obj2.helloWorld())
 // **************************************** QUESTION 3 ***************************************
+
+// Q. Write a function to create a deep copy of object or array.
+
+function deepCopy(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+    if (Array.isArray(obj)) {
+        return obj.map(deepCopy);
+    }
+    const copiedObject = {};
+    for (const key in obj) {
+        copiedObject[key] = deepCopy(obj[key]);
+    }
+    return copiedObject;
+}
+const arr = [1, 3, ["blue", "pink"], 8]
+const copy = deepCopy(arr);
+copy[0] = true
+console.log('copy: ', copy);
+console.log('arr: ', arr);
+
 // **************************************** QUESTION 4 ***************************************
 
 // String is immutable in javascript

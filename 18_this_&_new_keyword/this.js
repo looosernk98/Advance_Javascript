@@ -2,26 +2,23 @@
 
 /*
 
-       Non Strict Mode                      |         Strict Mode
-    1. If a function is present in object   | 1. If a function is present in object
-       this will refer to object in which   |    this will refer to global object                                      
-       fuction is defined                   |
-    2. In global scope , this refers to     | 2. In global scope , this refers to
-       global(window) object                |   global(window) onject
-    3. we can change the reference of this  | 3. we can change the reference of this
-       call and apply                       |   call and apply  
-    4. bind method binds the a function to  | 4. bind method binds the a function to
-      to a object. and return a function    |   to a object. and return a function
-      that can be called. In this case,     |   that can be called. In this case,
-      this always refers to object that was |   this always refers to object that was
-      binded to function                    |   binded to function     
-    5. async callback like setTimeout gets  | 5. async callback like setTimeout gets
-      executed w.r.t global object          |    executed w.r.t global object     
-    6. arrow fn in a object always refers to| 6. arrow fn in a object always refers to
-     object in which it is defined and      |   object in which it is defined and 
-     reference established at the time of   |   reference established at the time of
-     creation of arrow fn                   |   creation of arrow fn       
-                                            | 
+    Non Strict Mode                     |         Strict Mode
+1. If a function is present in object   | 1. If a function is present in object
+    this will refer to <<object>> in    |    this will refer to <<global object>>                                      
+    which fuction is defined            |
+2. In global scope , this refers to     | 2. *** same behavior ***
+    global(window) object               |   
+3. we can change the reference of this  | 3. *** same behavior ***
+    call and apply                      |     
+4. In case of bind fn,this always refers| 4. *** same behavior ***
+    to object that binded to function   |    
+5. async callback like setTimeout gets  | 5. *** same behavior ***
+    executed w.r.t global object        |         
+6. arrow fn in a object always refers to| 6. *** same behavior ***
+   object in which it is defined and    |    
+   reference established at the time of |   
+   creation of arrow fn                 |          
+                                        | 
 
 
 */
@@ -50,7 +47,7 @@ print() // fn was called w.r.t global scope
 
 window.print() // fn was called w.r.t window object so this will refer to window
 
-// "strict mode"
+"strict mode"
 // function in object
 let object = {
    name: "Alex",
@@ -152,6 +149,8 @@ const obj3 = {
     }
  }
  obj3.print()
+
+ "use strict"
 
 //  using arrow
  const obj4 = {
