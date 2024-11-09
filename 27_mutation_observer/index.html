@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .parent{
+            display: flex;
+            flex-grow: wrap;
+        }
+      .div{
+        width: 200px;
+        height: 200px;
+        border: 1px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+      }
+      .one{
+       background-color: aqua;
+      }
+      .two{
+        background-color: aquamarine;
+      }
+      .three{
+        background-color: bisque;
+      }
+      .innerDiv{
+        border: 1px solid;
+        padding: 5px;
+      }
+      
+      button{
+        margin: 20px;
+        width: fit-content;
+        padding: 5px;
+        height: 40px;
+      }
+
+      .pink{
+        background-color: pink;
+      }
+    </style>
+
+    <div id="par" class="parent">
+        <div contenteditable class="div one">Div 1</div>
+        <div class="div otherDiv">
+            <div class="innerDiv">inner div child</div>
+        </div>
+        <div contenteditable class="div two">Div 2</div>
+        <div contenteditable class="div three">Div 3</div>
+    </div>
+
+    <button id="add-child">add child</button>
+    <button id="remove-inner">remove innerDiv</button>
+    <button id="change-attr"> change classname of div1</button>
+
+    <script src="index.js"></script>
+</body>
+</html>
