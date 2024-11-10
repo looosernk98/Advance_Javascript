@@ -75,6 +75,7 @@ const bgButton = document.querySelector('.bg-btn')
 dataButton.addEventListener('click', () => {
    
     const worker = new Worker('worker.js')
+    // const worker2 = new SharedWorker('worker.js')
 
     worker.postMessage("start, worker")
 

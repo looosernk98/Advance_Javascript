@@ -5,6 +5,7 @@
  memory leaks.
 
 How Memory Management Works in JavaScript:
+
  When you create variables, objects, arrays, or functions in JavaScript, the 
  memory needed for these values is allocated. As your program runs, some of 
  these variables or objects may no longer be needed, so their allocated memory 
@@ -12,6 +13,7 @@ How Memory Management Works in JavaScript:
  comes into play.
 
  How the Garbage Collector Works:
+ 
  The JavaScript garbage collector uses algorithms to determine which parts of 
  the memory are no longer accessible and can be safely released. The most common
  garbage collection strategy in JavaScript is called "mark-and-sweep"
@@ -53,6 +55,7 @@ Reference Counting: This was one of the early techniques used for garbage
          there are no references to it. However, this approach has a significant 
          drawback: it cannot handle circular references well, where two objects 
          reference each other, but neither is actually reachable from the root.
+
 Mark-and-Sweep: The most widely used strategy in modern JavaScript engines. It 
          can handle circular references and is more efficient for general use.
 
@@ -77,6 +80,7 @@ function createCircularReference() {
 /*
 
 How to Avoid Memory Leaks:
+
 Even with an efficient garbage collector, it's still possible to have memory 
 leaks in JavaScript applications. Common causes include:
 
@@ -105,3 +109,5 @@ element.removeEventListener("click", handleClick);
         even after the outer function has executed.
 
 */
+
+let john = { name: "John" };

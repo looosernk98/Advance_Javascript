@@ -14,8 +14,12 @@ document.dispatchEvent(myEvent)
 
 
 /****************************** Bubbling of custom event************************************/
-
-const myEvent = new Event('myCustomEvent', { bubbles:true, cancelable:true, composed:false}); // 1. creation of custom event
+// 1. creation of custom event
+const myEvent = new Event('myCustomEvent', { 
+  bubbles:true, 
+  cancelable:true, 
+  composed:false
+}); 
 
 document.addEventListener('myCustomEvent', function(e){ 
     console.log('document', e.defaultPrevented);
@@ -32,7 +36,7 @@ button.addEventListener('myCustomEvent', (e) => {
 
 })
 
-// button.dispatchEvent(myEvent)
+button.dispatchEvent(myEvent)
 
 
 /****************************** Passing Data to Custom Event *********************************/
