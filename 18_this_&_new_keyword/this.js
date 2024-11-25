@@ -1,5 +1,11 @@
 // https://www.tutorialsteacher.com/javascript/this-keyword-in-javascript
 
+// The this keyword in JavaScript is a fundamental concept used to refer to the 
+// object that is executing the current function. The value of this depends on how 
+// and where the function is invoked, not where it is defined. Its behavior can vary 
+// based on the context (global, object, function, or class) and the invocation 
+// style.
+
 /*
 
     Non Strict Mode                     |         Strict Mode

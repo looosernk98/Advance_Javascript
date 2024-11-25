@@ -57,4 +57,30 @@ let curriedsum = curry(sum);
 console.log(curriedsum(1)(2)(3)); // 6, full currying
 
 
+//***********************************************************************/
+// Ques. write a currying func that accepts infinite number of arguments return 
+        // sum when empty argument is encountered
+        
+function sum(...args) {
+  const total = args.reduce((acc, num) => acc + num, 0);
+
+  function curriedSum(...nextArgs) {
+    if (nextArgs.length === 0) {
+      return total;
+    }
+    return sum(total, ...nextArgs);
+  }
+
+  return curriedSum;
+}
+
+// Usage
+const result = sum(1)(2)(3)(); // 6
+console.log(result); // 6
+
+const anotherResult = sum(5)(10)(15)(20)(); // 50
+console.log(anotherResult); // 50
+
+
+
 

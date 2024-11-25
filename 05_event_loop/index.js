@@ -49,3 +49,6 @@ Repeat:
 The event loop continues this process, ensuring that the call stack is always 
 empty before taking the next function from the callback queue.
 */
+
+
+//********************** Event loop differences in Node.js and Browser */

@@ -12,7 +12,8 @@ When an external script <script src="..."> loads, the task is to execute it.
 When a user moves their mouse, the task is to dispatch mousemove event and execute handlers.
 When the time is due for a scheduled setTimeout, the task is to run its callback.
 
-Tasks are set – the engine handles them – then waits for more tasks (while sleeping and consuming close to zero CPU).
+Tasks are set – the engine handles them – then waits for more tasks 
+(while sleeping and consuming close to zero CPU).
 
 
 
