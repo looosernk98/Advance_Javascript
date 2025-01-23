@@ -82,7 +82,8 @@ Object.getPrototypeOf(object) === Object.prototype; // true
 
 // Array literals automatically have `Array.prototype` as their `[[Prototype]]`
 const array = [1, 2, 3];
-Object.getPrototypeOf(array) === Array.prototype; // true
+console.log(Object.getPrototypeOf(array) === Array.prototype); // true
+console.log(Object.getPrototypeOf(Array.prototype) === Object.prototype)
 
 // RegExp literals automatically have `RegExp.prototype` as their `[[Prototype]]`
 const regexp = /abc/;

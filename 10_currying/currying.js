@@ -35,12 +35,12 @@ console.log(res);
 function curry(func) {
   return function curried(...args) {
     if (args.length >= func.length) {
-      console.log('args: ',args)
       return func.apply(this, args);
+      // return func(args)
     } else {
       return function (...args2) {
-        console.log('args, args2: ', args, args2);
         return curried.apply(this, args.concat(args2));
+        // return curried(args.concat(args2));
       };
     }
   };
@@ -52,8 +52,8 @@ function sum(a, b, c) {
 
 let curriedsum = curry(sum);
 
-// console.log(curriedsum(1, 2, 3));  // 6, still callable normally
-// console.log(curriedsum(1)(2, 3));   // 6, currying of 1st arg
+console.log(curriedsum(1, 2, 3));  // 6, still callable normally
+console.log(curriedsum(1)(2, 3));   // 6, currying of 1st arg
 console.log(curriedsum(1)(2)(3)); // 6, full currying
 
 

@@ -25,8 +25,8 @@ console.log(observedArray); // [1, 2]
 
 //***************************** Overriding push Method ***************/
 
-let array = [];
-array.push = function (...items) {
+let arr = [];
+arr.push = function (...items) {
   for (let item of items) {
     console.log(`Element added: ${item}`);
   }
@@ -34,6 +34,6 @@ array.push = function (...items) {
 };
 
 // Example usage
-array.push(1); // Logs: "Element added: 1"
-array.push(2, 3); // Logs: "Element added: 2", "Element added: 3"
-console.log(array); // [1, 2, 3]
+arr.push(1); // Logs: "Element added: 1"
+arr.push(2, 3); // Logs: "Element added: 2", "Element added: 3"
+console.log(arr); // [1, 2, 3]

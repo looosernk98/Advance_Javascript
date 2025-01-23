@@ -1,34 +1,6 @@
 // https://www.youtube.com/watch?v=QCQVttjblRs
 
-/*
- 
- Q1. Diff bw semantic and non-semantic tags
- Ans . Semantic HTML tags are tags that define the meaning of 
-       the content they contain.
- Q2. Diff bw flexbox and grid pattern
- Ans. flexbox was designed for layout in one dimension - either a row or a column. 
-      Grid was designed for two-dimensional layout - rows, and columns at the same 
-      time
- Q3. Reson behind when a css, html running on one browser and not on other
- Ans CSS behaves differently on different browsers because each browser has its 
-     implementation of the CSS specifications.This can result in variations in 
-     how the browser interprets the CSS code and renders the web page
 
- Q4. Tell us about the use of the CSS Box Model
- Ans. The CSS box model is essentially a box that wraps around every HTML element.
-      It consists of: content, padding, borders and margins. The image below illustrates
-      the box model:
-       -> Important: When you set the width and height properties of an element 
-          with CSS, you just set the width and height of the content area. To 
-          calculate the total width and height of an element, you must also include
-           the padding and borders.
- 
-*/
-
-// Q1. Tell me some ways to check if a key exist in object or not ??
-// Ans : 1. using hasOwnProperty
-//       2. using for..in loop
-//       3. using undefined
 
 const input = [
     {
@@ -106,17 +78,129 @@ input.forEach((item, index) => {
 console.log('output: ', output);
 
 /******************************************************************************/
-/*
- Q. Does setTimeout always runs after delay time provided ?
-    No, setTimeout() will not always run after the delay time, and it can take 
-    more time than the delay time
-    The delay parameter in setTimeout() only guarantees that the callback 
-    function will not execute before the specified time. Other tasks or 
-    operations in the queue could delay the execution further.
 
-Q. Does setInterval always runs after delay time provided ?
-   Yes, the setInterval() function in JavaScript will always run after the 
-   delay time, but the function it executes can take longer than the delay time
-*/
+const arr = [
+    {name: 'harry', age: 19},
+    {name: 'alex', age: 28},
+    {name: 'peter', age: 26},
+]
+
+// Ques1. sort in descending order by age
+arr.sort((a,b) => b.age - a.age)
+console.log('arr: ', arr);
+
+// Ques2. sort in descending order by name
+arr.sort((a,b) => b.name.localeCompare(a.name))
+console.log('arr: ', arr);
+
+/******************************************************************************/
+
+// What will be the output of below 
+
+const sum = function(a, b=10){
+ console.log(a+b);
+}
+
+console.log(sum(10, null))
+console.log(sum(10, undefined))
+
+/******************************************************************************/
+
+// Q. convert the below data into single array that consist all inner objects like below
+// Q. write a single liner function that accepts label as parameter and returns it's respective value
+// output: 
+    // [
+    //  {label:'Standard - Generic', value:'STANDARD_GENERIC'},
+    //  {label:'Standard - Niche', value:'STANDARD_NICHE'},
+    //  {label:'Specialised', value:'SPECIALISED'},
+    //  {label:'Unknown', value:'UNKNOWN'},
+    // ]
+
+
+const options = {
+    core:[
+      {
+        label: 'Standard - Generic',
+        value: 'STANDARD_GENERIC'
+      },
+      {
+        label: 'Standard - Niche',
+        value: 'STANDARD_NICHE'
+      },
+    ],
+    non_core:[
+      {
+        label: 'Specialised',
+        value: 'SPECIALISED'
+      },
+      {
+        label: 'Unknown',
+        value: 'UNKNOWN'
+      }
+    ]
+  }
+const label = 'Unknown'
+const value = Object.values(options).flat().find(item => item.label === label).value
+console.log('value: ', value);
+
+/******************************************************************************/
+//Ques. What will be the output of below questions
+
+console.log(z) // output ??
+console.log([]==[])
+console.log([]===[])
+
+
+// if (true) let a = 1; // SyntaxError: Lexical declaration cannot appear in a single-statement context
+
+{
+    // TDZ starts at beginning of scope
+    const func = () => console.log(letVar); // OK
+  
+    // Within the TDZ letVar access throws `ReferenceError`
+  
+    let letVar = 3; // End of TDZ (for letVar)
+    func(); // Called outside TDZ!
+}
+  
+{
+    typeof i; // ReferenceError: Cannot access 'i' before initialization
+    let i = 10;
+}
+
+  console.log(typeof undeclaredVariable); // "undefined"
+
+
+var x = "global";
+let y = "global";
+console.log(this.x); // "global"
+console.log(this.y); // undefined
+
+function test() {
+    var foo = 33;
+    if (foo) {
+      let foo = foo + 55; // ReferenceError
+    }
+  }
+test();
+
+
+// function test(a, ...b, c){
+//    console.log(a, b, c); // rest opeator is always used as last parameter
+// }
+
+// test(2, 7, 8, 9)
+
+const a = 8
+console.log(typeof typeof typeof a)
+
+//
+// let arr = [1,2,3,"hello", true]
+// console.log(...arr)
+  
+
+
+
+
 
 

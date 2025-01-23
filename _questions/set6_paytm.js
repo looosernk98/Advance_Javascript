@@ -19,21 +19,32 @@ D.) ['W', 'o', 'r', '', 'd']
 
 
 Q2.What will be the output of the following code snippet
+var a = "outer"
+function test1(name) {
+   let a = name;
+
+   function test2() {
+     console.log('Output:', this.a);
+   }
+   test2();
+}
+test1 ("paytm")
 
 function test1(name) {
    let a = name;
 
    function test2() {
-    console.log('Output:', this.a);
+     console.log('Output:', this);
    }
-   test2();
+    console.log("this::", this)
+   test2
 }
 test1 ("paytm")
 
 Pick ONE option:
 
 A.) undefined
-B.) paytm
+B.) paytm 
 C.) RunTime Error
 D.) Syntax Error
 
@@ -274,13 +285,13 @@ function foo() {
 }
 console.log(foo());
 
-// function A(){
-//     var val = 1;
-//     return val;
-//     var val = 2;
-// }
+function A(){
+    var val = 1;
+    return val;
+    var val = 2;
+}
 
-// console.log(A())
+ console.log(A())
 
  pick one option
  A.) 3
@@ -316,8 +327,8 @@ Q17. - What will be the output of below code snippet?
 var length = 10;
 function fn() {
   var length = 20;
-  console.log(this);
-  console.log(this.length);
+  // console.log(this);
+  console.log(this.length); // in browser , output will be 10. but in vs code , it will be undefined
 }
 fn();
 
