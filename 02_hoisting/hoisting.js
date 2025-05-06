@@ -99,6 +99,77 @@ The JavaScript engine doesn’t hoist the function expressions and arrow functio
 
 */
 
+// ========================== WHO HAS HIGH PRECEDENCE =====================
+function example(a) {
+  console.log(a); // Output ?
+  var a = 20;
+  console.log(a); // Output ?
+  function a() {}
+  console.log(a); // Output ?
+}
+
+example(10);
+
+// OUTPUT : 
+// [Function: a]
+// 20
+// 20
+
+// EXPLANATION
+
+/*
+ Key concepts at play:
+
+-> Function and variable declarations are hoisted.JS moves their declaration on 
+   top of script
+-> Function declarations are hoisted before variable declarations.
+-> If a function and a variable have the same name, the function takes precedence 
+  during hoisting.
+-> Function parameters are also treated like variable declarations.
+
+*/
+
+// Here's how JavaScript "sees" the function after hoisting:
+function example(a) {
+  function a() {}       // Function `a` hoisted first
+  var a;                // Then `var a` is hoisted but doesn't override the function
+  console.log(a);       // ①
+  a = 20;               // assignment
+  console.log(a);       // ②
+  console.log(a);       // ③
+}
+
+/*
+✅ Initial State:
+
+-> function a() is hoisted (overrides the parameter named a).
+
+-> var a is also hoisted, but does not override the function a.
+
+-> Parameter a is present as well (example(10)), but the hoisted function a() 
+   takes precedence over the passed value 10.
+
+-> So, inside the function:
+a initially refers to the function a, not the value 10.
+
+
+🔢 Execution:
+console.log(a);
+   -> a refers to the hoisted function a(), so:
+   -> Output: function a() {}
+
+a = 20;
+   -> Reassigns a to 20.
+
+console.log(a);
+   -> a is now 20
+   -> Output: 20
+
+console.log(a);
+   -> Still 20
+   -> Output: 20
+*/
+
 
 
 
