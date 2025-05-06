@@ -24,13 +24,15 @@ not pending.
 */
 
 const promise = new Promise((res, rej) => {
-    rej('rejected value')
+    // rej('REJECTED VALUE')
+    res("RESOLVED VALUE")
 })
 console.log('promise: ', promise);
 
 promise.then((result) => {
     console.log('inside then promise: ', promise);
     console.log('result: ', result);
+    // throw new Error('error from ist then')
 })
 .catch((err) => {
     console.log('inside catch promise: ', promise);

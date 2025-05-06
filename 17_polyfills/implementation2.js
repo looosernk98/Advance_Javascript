@@ -3,12 +3,12 @@
 const myRace = function(arr){
    return new Promise((resolve, reject) => {
     for(let i =0; i<arr.length; i++){
-        // arr[i].then((result) =>  resolve(result))
-        // .catch((err) => {
-        //     reject(err)
-        // })
+        arr[i].then((result) =>  resolve(result))
+        .catch((err) => {
+            reject(err)
+        })
 
-        Promise.resolve(arr[i]).then(resolve, reject)
+        // Promise.resolve(arr[i]).then(resolve, reject)
      }
    })
 }

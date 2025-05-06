@@ -24,3 +24,27 @@ promise.then((res) => {
 .catch((err) => {
   console.log('err: ', err);
 })
+
+/*
+  Why does reject(2) not trigger .catch()?
+
+-> Because once a Promise is settled (either resolved or rejected), it becomes 
+  immutable — its state is locked in and can't be changed.
+-> Only the first call to either resolve or reject takes effect. All subsequent 
+  calls are ignored.
+
+*/
+
+// REVERSE CASE
+let promise2 = new Promise(function(resolve, reject) {
+  setTimeout(() => reject(2), 1000);
+  resolve(1);
+});
+promise2.then((res) => {
+  console.log('res: ', res);
+})
+.catch((err) => {
+  console.log('err: ', err);
+})
+
+// You'll still see res: 1, because resolve(1) runs immediately before the timeout.

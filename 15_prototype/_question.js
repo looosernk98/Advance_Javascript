@@ -11,13 +11,12 @@ const parent = {
   console.log("before adding value param  child.method()", child.method());
   child.value = 4;
   console.log("After adding value param child.method()", child.method());
-  console.log(child.method());
 
   //**************************************************************************************/
 
 //Call and bind
 function person(name, age) {
-  console.log('this:', this);
+    console.log('this:', this);
     this.name = name;
     this.age = age;
   }

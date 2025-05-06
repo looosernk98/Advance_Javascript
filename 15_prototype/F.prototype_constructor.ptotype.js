@@ -65,7 +65,7 @@ function Rabbit(name) {
   
   let rabbit1 = new Rabbit("White Rabbit");
   
-  let rabbit2 = new rabbit.constructor("Black Rabbit");
+  let rabbit2 = new rabbit1.constructor("Black Rabbit");
   
   /*
   That’s handy when we have an object, don’t know which constructor was used for 

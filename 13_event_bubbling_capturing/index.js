@@ -23,6 +23,9 @@
         focus, blur, load and some others, don’t bubble up. That is, their 
         travel stops after the target phase.
 
+-> Only listeners for the same event type (e.g., 'click') will be triggered 
+   during bubbling.
+
 */
 
 // capturing flow :  window object -> document -> html -> body -> element

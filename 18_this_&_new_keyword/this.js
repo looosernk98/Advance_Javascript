@@ -108,7 +108,7 @@ obj1Add(); // this will refer obj1 always
 
 //******************************* This in Async fn or Callback ******************************************/
 
-// "use strict"
+"use strict"
 const user1 = {
     age: 24,
     regularMethod: function(){

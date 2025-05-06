@@ -75,3 +75,62 @@ console.log(7);
 
 
 // output: 1 7 3 5 2 6 4.
+
+
+// ======================================================
+console.log("start")
+
+setTimeout(function() {
+  console.log("setimeout 1")
+}, 0);
+
+Promise.resolve("p1").then((res) => console.log(res))
+
+Promise.resolve(() => console.log("p2")).then((res) => res())
+
+Promise.resolve(() => setTimeout(() => console.log("p3"), 0)).then((res) => res())
+
+setTimeout(function() {
+  console.log("setimeout 2")
+}, 0);
+
+console.log("end")
+
+// =============================================
+console.log("start")
+
+setTimeout(function() {
+  console.log("setimeout 1")
+}, 2);
+
+Promise.resolve("p1").then((res) => console.log(res))
+
+Promise.resolve(() => console.log("p2")).then((res) => res())
+
+Promise.resolve(() => setTimeout(() => console.log("p3"), 0)).then((res) => res())
+
+setTimeout(function() {
+  console.log("setimeout 2")
+}, 2);
+
+console.log("end")
+
+//============================================
+
+console.log("start")
+
+setTimeout(function() {
+  console.log("setimeout 1")
+}, 20);
+
+Promise.resolve("p1").then((res) => console.log(res))
+
+Promise.resolve(() => console.log("p2")).then((res) => res())
+
+Promise.resolve(() => setTimeout(() => console.log("p3"), 0)).then((res) => res())
+
+setTimeout(function() {
+  console.log("setimeout 2")
+}, 20);
+
+console.log("end")

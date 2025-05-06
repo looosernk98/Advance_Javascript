@@ -19,10 +19,10 @@ const user1 = {
     // }
 }
 
-const printName = function(state, pin){
-    console.log(this.firstName+" "+this.lastName + " from " + state + "-"+pin);
+const printName = function(state, pin, role){
+    console.log(this.firstName+" "+this.lastName + " from " + state + "-"+pin, role);
 }
-printName.call(user1, 'delhi', 110086);
+// printName.call(user1, 'delhi', 110086);
 
 const user2 = {
     firstName: 'virat',
@@ -32,5 +32,5 @@ const user2 = {
 printName.apply(user2, ['delhi', 110089])
 
 const printNameReturnedCopy = printName.bind(user1, 'mumbai', 110076)
-printNameReturnedCopy()
+printNameReturnedCopy("SE-II")
 // console.log('printNameReturned: ', printNameReturnedCopy);

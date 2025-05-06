@@ -22,7 +22,7 @@ const promise3 = new Promise((resolve, reject) => {
   )
 });
 
-Promise.all([promise1, promise2, promise3])
+Promise.all([promise1, promise2, promise3]) // concurrently running, started at same time , back and forth b/w tasks
 .then((values) => {
   console.log("values: ",values);
 })

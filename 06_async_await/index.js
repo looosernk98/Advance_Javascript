@@ -82,7 +82,7 @@ Output:
 Even though the return value of an async function behaves as if it's wrapped in 
 a Promise.resolve, they are not equivalent.
 
-An async function will return a different reference, whereas Promise.resolve 
+NOTE: An async function will return a different reference, whereas Promise.resolve 
 returns the same reference if the given value is a promise.
 
 It can be a problem when you want to check the equality of a promise and a 
@@ -134,6 +134,13 @@ const p = new Promise((res, rej) => {
   console.log('prom: ', prom);
   prom.then((res) => console.log(res)).catch((err) => console.log(err))
   console.log('AFTER');
+
+
+async function print(){
+    return 1
+ }
+ 
+ console.log(print().then((res) => res)); // pending promise
 
 
   //******************************* Async functions and execution order  ***************/
