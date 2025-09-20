@@ -11,12 +11,12 @@ const obj = {
     }
 }
 const deepCopy = deepClone(obj)
-deepClone.printName = function(){
+deepCopy.printName = function(){
     console.log(this.age);
 }
 deepCopy.age = 28
-console.log(obj.printName());
-console.log(deepCopy.printName());
+obj.printName();
+deepCopy.printName();
 
 
 

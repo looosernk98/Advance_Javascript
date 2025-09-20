@@ -64,7 +64,6 @@ function delay() {
   return new Promise(resolve => setTimeout(resolve, 1000));
 }
 
-
 async function test() {
   console.log(1);
   await delay();

@@ -218,4 +218,3 @@ console.log(child instanceof Child);     // Output ?
 console.log(child instanceof Parent);    // Output ?
 console.log(child instanceof Object);    // Output ?
 
-

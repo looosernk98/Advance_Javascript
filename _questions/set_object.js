@@ -4,7 +4,7 @@
 const obj = {};
 obj[1] = 'one';
 obj[true] = 'boolean';
-console.log(Object.keys(obj));
+console.log(Object.keys(obj)); // keys automatically converted to a string: 
 
 
 // Q2. Guess the output

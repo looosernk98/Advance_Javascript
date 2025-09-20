@@ -26,6 +26,14 @@
 -> Only listeners for the same event type (e.g., 'click') will be triggered 
    during bubbling.
 
+🔁 What actually happens:
+
+-> The event starts at the target element (the actual element clicked).
+-> It then bubbles up through all ancestors (parentNode, parentElement, etc.) up to document, and finally window.
+-> At each step, the browser checks:
+👉 “Does this element have an event listener for this event type?”
+   If yes, it executes the listener. If not, it continues bubbling.
+
 */
 
 // capturing flow :  window object -> document -> html -> body -> element
@@ -42,45 +50,45 @@
 
 document.querySelector('#grandparent')
 .addEventListener('click',()=>{
-   console.log('grandparent')
+   console.log('bubble phase: grandparent')
 })
 
 document.querySelector('#parent')
 .addEventListener('click',()=>{
-   console.log('parent')
+   console.log('bubble phase: parent')
 
 })
 
 document.querySelector('#child')
 .addEventListener('click',(e)=>{
-   console.log('child')
+   console.log('bubble phase: child')
 })
 
 // capturing or trickling  phase
 
-// document.querySelector('#grandparent')
-// .addEventListener('click',(e)=>{
+document.querySelector('#grandparent')
+.addEventListener('click',(e)=>{
 
-//    console.log('grandparent')
-// },true)
+   console.log('capture phase: grandparent')
+},true)
 
-// document.querySelector('#parent')
-// .addEventListener('click',(e)=>{
-//    //  e.stopPropagation()
-//     e.stopImmediatePropagation()
-//    //  e.stopPropagation()
-//    console.log('parent1')
-// },true)
+document.querySelector('#parent')
+.addEventListener('click',(e)=>{
+    e.stopPropagation()
+   //  e.stopImmediatePropagation()
+   //  e.stopPropagation()
+   console.log('capture phase: parent1')
+},true)
 
-// document.querySelector('#child')
-// .addEventListener('click',(e)=>{
-//    console.log('child')
-// },true)
+document.querySelector('#child')
+.addEventListener('click',(e)=>{
+   console.log('capture phase: child')
+},true)
 
 // document.querySelector('#parent')
 // .addEventListener('click',()=>{
 //    // it will be stopped by stopImmediate propagation fn
-//     console.log('onload event')
+//     console.log('capture: onload event')
 // },true)
 
 

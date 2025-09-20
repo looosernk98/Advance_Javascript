@@ -41,11 +41,12 @@
 // data types values but you just need to flatten array and rest will be as it is
 
 const arr = [1,2,3,[4,[5,6]], [7,8], {key: 'value'}, true]
+
 const flattenArray = (arr) =>{
    let  ans = [];
    for(let i =0; i<arr.length; i++){
     if(Array.isArray(arr[i])){
-        const res = flattenArray(arr[i]);
+       const res = flattenArray(arr[i]);
        res.forEach((item) => {
          ans.push(item);
        })

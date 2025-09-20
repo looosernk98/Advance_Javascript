@@ -5,7 +5,7 @@
  (so-called “flags”):
 
  1. writable – if true, the value can be changed, otherwise it’s read-only.
- 2. enumerable – if true, then listed in loops, otherwise not listed.
+ 2. enumerable – if true, then listed in loops, console.log, otherwise not listed.
  3. configurable – if true, the property can be deleted and these attributes 
                    can be modified, otherwise not.
 
@@ -39,6 +39,7 @@ let user = {
 };
   
 let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
+console.log('descriptor: ', descriptor);
 
 console.log( JSON.stringify(descriptor, null, 2 ) );
 /* property descriptor:

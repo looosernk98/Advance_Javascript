@@ -32,6 +32,8 @@ console.log(res);
 // *************************** example 2 (like .curry of lodash) ****************************************
 
 // implementation of curry fn that can be called normally as well as like curry fn
+
+// follow up: What if sum args are not known in advance?
 function curry(func) {
   return function curried(...args) {
     if (args.length >= func.length) {
@@ -46,8 +48,8 @@ function curry(func) {
   };
 }
 
-function sum(a, b, c) {
-  return a + b + c;
+function sum(...args) {
+  return args.reduce((acc, num) => acc + num, 0);
 }
 
 let curriedsum = curry(sum);
@@ -60,7 +62,11 @@ console.log(curriedsum(1)(2)(3)); // 6, full currying
 //***********************************************************************/
 // Ques. write a currying func that accepts infinite number of arguments return 
         // sum when empty argument is encountered
-        
+
+// follow up question: how to handle empty argument case?
+// answer: we can handle it by checking if the first argument is empty
+// and if it is, we can return the total sum
+
 function sum(...args) {
   const total = args.reduce((acc, num) => acc + num, 0);
 
@@ -73,6 +79,7 @@ function sum(...args) {
 
   return curriedSum;
 }
+// console.log(sum()); not handled if first arg is empty
 
 // Usage
 const result = sum(1)(2)(3)(); // 6

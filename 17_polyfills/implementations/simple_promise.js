@@ -8,9 +8,6 @@ function MyPromise(cb){
     let value = null
     let thenCbs = [];
     let catchCbs = [];
-
-    
-    
     
     function runAllCallbacks(){
         console.log("runAllCallbacks");
@@ -18,10 +15,12 @@ function MyPromise(cb){
       if(state == FULFILLED){
         console.log("runAllCallbacks, FULFILLED");
         thenCbs.forEach((callback) => callback(value))
+        thenCbs = [] // clear after running
       }
 
       if(state == REJECTED){
         catchCbs.forEach((callback) => callback(value))
+        catchCbs = []
       }
     }
 
@@ -42,35 +41,86 @@ function MyPromise(cb){
         runAllCallbacks()
     }
     
+    // this.then = function(successCb) {
+    //     console.log("Inside then");
+    // //    return new MyPromise((res) => {
+    //     if(state == FULFILLED){
+    //     console.log("Inside then if cond");
+
+    //         successCb(value)
+    //      }else{
+    //     console.log("Inside then else cond");
+
+    //         thenCbs.push(successCb)
+    //      }
+    // //    })
+    // //    runAllCallbacks()
+
+    //    return this
+    // }
     this.then = function(successCb) {
-        console.log("Inside then");
-    //    return new MyPromise((res) => {
-        if(state == FULFILLED){
-        console.log("Inside then if cond");
+        return new MyPromise((resolve, reject) => {
+          function handleCallback() {
+            try {
+              const result = successCb(value);
+              // If result is a promise, wait for it
+              if (result instanceof MyPromise) {
+                result.then(resolve).catch(reject);
+              } else {
+                resolve(result);
+              }
+            } catch (err) {
+              reject(err);
+            }
+          }
+      
+          if (state === FULFILLED) {
+            handleCallback();
+          } else if (state === PENDING) {
+            thenCbs.push(() => handleCallback());
+          } else if (state === REJECTED) {
+            // Propagate rejection if no success callback can handle it
+            reject(value);
+          }
+        });
+      };
+      
 
-            successCb(value)
-         }else{
-        console.log("Inside then else cond");
-
-            thenCbs.push(successCb)
-         }
-    //    })
-    //    runAllCallbacks()
-
-       return this
-    }
+    // this.catch = function(failureCb) {
+    // //    return new MyPromise((res, rej) => {
+    //     if(state == REJECTED){
+    //         failureCb(value)
+    //      }else{
+    //         catchCbs.push(failureCb)
+    //      }
+    // //    })
+    // //   runAllCallbacks()
+    //   return this
+    // }
 
     this.catch = function(failureCb) {
-    //    return new MyPromise((res, rej) => {
-        if(state == REJECTED){
-            failureCb(value)
-         }else{
-            catchCbs.push(failureCb)
-         }
-    //    })
-    //   runAllCallbacks()
-      return this
-    }
+        return new MyPromise((resolve, reject) => {
+          function handleCallback() {
+            try {
+              const result = failureCb(value);
+              if (result instanceof MyPromise) {
+                result.then(resolve).catch(reject);
+              } else {
+                resolve(result);
+              }
+            } catch (err) {
+              reject(err);
+            }
+          }
+      
+          if (state === REJECTED) {
+            handleCallback();
+          } else if (state === PENDING) {
+            catchCbs.push(() => handleCallback());
+          }
+        });
+      };
+      
 
     // intitialization
     cb(resolve, reject)
@@ -82,8 +132,8 @@ const p = new MyPromise((res, rej) => {
     console.log("Inside custom promise");
     setTimeout(() => {
         console.log("setTimeout");
-        res(100)
-    }, 2000)
+        rej(100)
+    }, 5000)
 })
 
 p.then((res) => {

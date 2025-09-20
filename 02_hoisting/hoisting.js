@@ -39,6 +39,9 @@ let num = 10;
  memory. However, it hasn’t been initialized.
  Behind the scenes, the JavaScript engine hoists the variable declarations 
  that use the let keyword. However, it doesn’t initialize the let variables.
+
+ let and const are hoisted too, but placed in the Temporal Dead Zone (TDZ) until 
+ their definition is reached.
 */
 
 // Notice that if you access a variable that doesn’t exist, the JavaScript will throw a different error:
@@ -50,9 +53,12 @@ let num2 = 1;
 
 // ********************** Function hoisting ************************************
 /*
+
  Like variables, the JavaScript engine also hoists the function declarations. 
  This means that the JavaScript engine also moves the function declarations to 
  the top of the script. For example:
+
+ 👉 Entire function is hoisted, so you can call it before it’s defined.
 */
 
 let x = 20,
@@ -96,6 +102,20 @@ The JavaScript engine hoists the variables declared using the let keyword,
 but it doesn’t initialize them as the variables declared with the var keyword.
 
 The JavaScript engine doesn’t hoist the function expressions and arrow functions
+
+
+Hoisting Order in a Function:
+
+-> Inside a function, JavaScript hoists in this order:
+
+1. Function declarations
+2. Variable declarations (var)
+3. Function parameters
+
+Key Rule:
+-> Parameter names are local variables.
+-> If a var has the same name as a parameter, the var declaration is ignored 
+   (but the assignment still runs during execution).
 
 */
 

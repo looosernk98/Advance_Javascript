@@ -178,3 +178,14 @@ Limitations of Cookies:
  Cookie: cookie_name1=cookie_value1; cookie_name2=cookie_value2
  Accept: /
 */
+
+/*
+ An HttpOnly cookie is a type of cookie that cannot be accessed via JavaScript 
+ (e.g., document.cookie). It is only sent in HTTP requests to the server.
+
+ The main reason: Security — it protects the cookie from cross-site scripting 
+ (XSS) attacks.
+
+ With HttpOnly, sensitive cookies like authentication tokens are not visible, 
+ even if the attacker injects a script.
+*/

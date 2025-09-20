@@ -36,6 +36,7 @@ promise.then((res) => {
 */
 
 // REVERSE CASE
+
 let promise2 = new Promise(function(resolve, reject) {
   setTimeout(() => reject(2), 1000);
   resolve(1);

@@ -129,7 +129,7 @@ const extractAllFilterWithValues = (data) => {
 }
 
 const ans = extractAllFilterWithValues(filters);
-// console.log('ans: ', ans);
+console.log('ans: ', ans);
 
 const mapChildToGrandParent = (filters) => {
     const map = new Map();

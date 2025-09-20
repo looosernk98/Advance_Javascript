@@ -4,7 +4,7 @@ Q1. what will be the output of the following code snippet?
 
 (function() {
   var greet = 'Hello World';
-  var toGreet = [].filter.call(greet, function(element, Index){ 
+  var toGreet = [].filter.call(greet, function(element, index){ 
     return index > 5;
   });
   console.log(toGreet);
@@ -20,6 +20,7 @@ D.) ['W', 'o', 'r', '', 'd']
 
 Q2.What will be the output of the following code snippet
 var a = "outer"
+
 function test1(name) {
    let a = name;
 
@@ -30,16 +31,6 @@ function test1(name) {
 }
 test1 ("paytm")
 
-function test1(name) {
-   let a = name;
-
-   function test2() {
-     console.log('Output:', this);
-   }
-    console.log("this::", this)
-   test2
-}
-test1 ("paytm")
 
 Pick ONE option:
 
@@ -302,6 +293,9 @@ function A(){
 Q19. What will be the output of below code snippet?
 
  console.log(0 && 1, 1 || 0);
+
+ ❌ No — Logical operators in JavaScript do not always return a boolean.
+Instead, they return one of the operands themselves, based on short-circuit evaluation.
 
  A.) true, true
  B.) false, false

@@ -24,8 +24,8 @@ not pending.
 */
 
 const promise = new Promise((res, rej) => {
-    // rej('REJECTED VALUE')
-    res("RESOLVED VALUE")
+    rej('REJECTED VALUE')
+    // res("RESOLVED VALUE")
 })
 console.log('promise: ', promise);
 
@@ -58,6 +58,11 @@ promise.then((result) => {
 .catch(() => {
     console.log('final catch');
 })
+
+// ✅ 1. All .then() run after a resolved promise
+// ❌ 2. Rejected promise — only first .catch() handles it
+// ✅ 3. If a .catch() recovers or not, .then() below it will still run
+// 🔁 4. .finally() always runs — whether resolved or rejected
 
 
 
@@ -98,8 +103,8 @@ const prom = new Promise((resolveOuter) => {
   resolveOuter(
     new Promise((resolveInner, rejectInner) => {
       setTimeout(() => {
-        resolveInner("InnerResolver")
-        // rejectInner("InnerReject")
+        // resolveInner("InnerResolver")
+        rejectInner("InnerReject")
       }, 5000);
     }),
   );

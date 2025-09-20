@@ -1,12 +1,13 @@
 const protoObject = {
   name:"rahul",
-  ag:23
+  age:23
 }
 
 const propertiesObject = {
   state:{
     writable: true,
     configurable: true,
+    // enumerable: true,
     value: "Delhi",
   },
 }

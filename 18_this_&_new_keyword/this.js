@@ -71,7 +71,7 @@ printNameOutside() //window ->  at this point fn was not called wrt to any objec
 
 
 // ****************************** Strict Mode ****************************
-// "use strict"
+"use strict"
 function print2(){
     console.log(this); // undefined
 }
@@ -178,6 +178,11 @@ const obj3 = {
     }
  }
  obj5.print()
+ "use strict"
+ const hello = () => {
+    console.log(this)
+ }
+ hello()
  
 "use strict"
  const obj6 = {

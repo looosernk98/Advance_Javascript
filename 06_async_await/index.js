@@ -11,6 +11,7 @@ more readable and intuitive way compared to using Promises and .then() chains.
 // ********************* 1. What is async? *************************
 /*
    -> async is a keyword used to declare an asynchronous function.
+
    -> An async function always returns a Promise, even if you don't explicitly 
    return a Promise. If a value is returned from the async function, JavaScript 
    wraps it in a Promise that resolves to that value.
@@ -19,6 +20,8 @@ more readable and intuitive way compared to using Promises and .then() chains.
    async function exampleFunction() {
      return "Hello, world!";
    }
+
+   console.log(exampleFunction())
 
   // Using the function:
   exampleFunction().then(value => {

@@ -19,6 +19,8 @@
  attribute waits until the HTML document has been parsed before downloading and 
  executing any external scripts.
 
+ NOTE: async and defer only work with external scripts not internal or inline
+
 */
 
 

@@ -4,8 +4,30 @@
 
 /*
 
-The TDZ of a variable declared in your JavaScript code is the area where the 
-variable is hoisted but inaccessible until it is initialized with a value. 
+TDZ refers to the Temporal Dead Zone, which is a time duration or period within a 
+scope in JavaScript where variables declared with let or const exist but cannot be 
+accessed until they are initialized. 
+
+It's not a memory area, but a state of unreachability for these variables, a 
+"dead zone" that lasts from the start of the scope until the variable's 
+declaration line in the code
+
+Why it exists: 
+-> The TDZ is a safeguard to help prevent potential issues with uninitialized 
+   variables, which was a common problem with var declarations.
+-> It ensures that developers use variables only after they've been 
+   explicitly declared and initialized with a value.
+
+Does TDZ occupy some physical memory ?
+No, TDZ does not occupy any additional memory
+
+Let us understand this with a analogy , suppose there are 2 tables, there is an apple 
+on table 1 and you want to move that to table 2. Now you picked apple from table 1 
+and the apple is in air. That space in air where apple is not on table and can be 
+classified as TDZ and think of table 1 as declaration phase and table 2 as 
+initialization phase and air with temporal dead zone.
+
+
 This concept applies to variables declared with let and const (but not var).
 
 */
@@ -75,7 +97,7 @@ This concept applies to variables declared with let and const (but not var).
 Hoisting refers to JavaScript giving higher precedence to the declaration of
 variables, classes, and functions during a program’s execution.
 
- Hoisting makes the computer process declarations before any other code.
+Hoisting makes the computer process declarations before any other code.
 Note: Hoisting does not mean JavaScript rearranges or moves code above one 
 another.
 

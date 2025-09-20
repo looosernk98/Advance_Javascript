@@ -31,7 +31,7 @@ const debounce = (callback,delay)=>{
       // console.log('arguments: ', arguments);
       clearTimeout(timerId) // clearing the previous timer
 
-      // assigning a new timer if user tak a pause of delay time then this timer will not clear and will execute the cb of setTimeout
+      // assigning a new timer if user takes a pause of delay time then this timer will not clear and will execute the cb of setTimeout
       timerId = setTimeout(()=>{ 
         callback()
       },delay)
