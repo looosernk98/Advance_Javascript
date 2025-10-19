@@ -80,7 +80,10 @@ function createGenerator(generatorFunc) {
   };
 }
 
-// Example usage and testing
+
+
+// ============================= Example usage and testing ==========================
+
 
 // Example 1: Simple number generator
 const numberGenerator = createGenerator(function(max, passedValue, step) {

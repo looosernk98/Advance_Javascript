@@ -1,7 +1,8 @@
 console.log(x) // error : not defined
 x = 4
 
-// If you don’t declare a variable using var, let, or const, JavaScript will implicitly create a global variable — but only in non-strict mode.
+// If you don’t declare a variable using var, let, or const, JavaScript will 
+// implicitly create a global variable — but only in non-strict mode.
 i = 0;
 console.log(i); // print 0 without error
 
@@ -30,6 +31,19 @@ function test() {
   }
   test();
   console.log(window.i); // 5 (in browser)
+
+
+// name = "alice"
+
+// const obj = {
+//     name: "alex",
+//     age: 23,
+//     printname: () => {
+//         console.log(this.name)
+//     }
+// }
+
+// obj.printname()
   
 
   

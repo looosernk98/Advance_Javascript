@@ -37,7 +37,7 @@ const myRace = function(arr){
  })
  
  console.log("Starting Promise.race...");
- const promise = Promise.race([p1,p2,p3])
+ const promise = myRace([p1,p2,p3])
  
  promise.then((res) =>{
      console.log('Race resolved with: ', res);

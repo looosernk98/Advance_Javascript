@@ -81,7 +81,7 @@ function Person(first, last, age, eyecolor) {
   const person1 = new Person();
   const person2 = new Person('rahul', 'gandhi',56, 'red');
   
-  // adding property to constructor function
+  // adding property to constructor function later after instance has been created already
   Person.prototype.gender = 'male';
   
   // adding method to constructor function
@@ -93,9 +93,14 @@ function Person(first, last, age, eyecolor) {
   console.log(Person.prototype);
   
   // inheriting the property from prototype
-  console.log(person1.gender);
+  console.log(person1.gender); // 
   console.log(person2.gender);
   console.log('person2: ', person2);
+
+//   Why does adding properties later work?
+
+// Because person1.__proto__ is a reference to the exact Person.prototype object.
+// It’s not a copy — it’s a live link.
   
   /*
     NOTE: Prototype is used to provide additional property to all the objects 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        p{
+            border: 1px solid red;
+        }
+
+        #box{
+            height: 100px;
+            overflow-y: scroll;
+            border: 1px solid;
+        }
+    </style>
+    <div id="box">
+        <p>Line 1</p>
+        <p>Line 2</p>
+        <p>Line 3</p>
+        <p>Line 4</p>
+        <p>Line 5</p>
+      </div>
+      
+      <script>
+      const box = document.getElementById("box");
+      
+      box.addEventListener("scroll", () => {
+        console.log("ScrollTop", box.scrollTop);
+        console.log("ScrollHeight: " , box.scrollHeight);
+        console.log("ClientHeight: ", box.clientHeight)
+        if (Math.ceil(box.scrollTop + box.clientHeight) >= box.scrollHeight) {
+           console.log("Scrolled to bottom!");
+           alert("Scrolled to bottom!");
+         }
+      });
+      </script>
+      
+</body>
+</html>

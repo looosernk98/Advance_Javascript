@@ -63,10 +63,12 @@ function resolveAfter2Seconds() {
     console.log("==PARALLEL with await Promise.all==");
   
     // Start 2 "jobs" in parallel and wait for both of them to complete
-    await Promise.all([
-      (async () => console.log(await resolveAfter2Seconds()))(),
-      (async () => console.log(await resolveAfter1Second()))(),
+    const res = await Promise.all([
+      (async () => await resolveAfter2Seconds())(),
+      (async () => await resolveAfter1Second())(),
     ]);
+
+    console.log('parallel result: ', res)
   }
   // parallel()
   

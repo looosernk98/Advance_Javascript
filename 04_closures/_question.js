@@ -7,7 +7,7 @@ for(var i = 0; i<=5; i++){
 }
 
 // output : 6, 6, 6, 6, 6, 6
-/*
+
 
 let i;
 for( i = 0; i<=5; i++){
@@ -23,14 +23,13 @@ for(let i = 0; i<=5; i++){
    }
     setTimeout(fn, 1000)
 }
-*/
 
 /*
 Explanation :
  output - 0, 1, 2, 3, 4, 5
 
  as we know variable declared with let is blocked scope. so here every time 
- callback fn forms a closure with i variable having different reference each time
+ callback fn forms a closure with i variable having different reference in each iteration
 */
 
 // Q2. Guess the ouput
@@ -45,7 +44,7 @@ for(var i = 0; i<=5; i++){
  output - 6, 6, 6, 6, 6, 6
 
  as we know variable declared with var is not blocked scope. so here every time 
- callback fn forms a closure with i variable having same reference each time
+ callback fn forms a closure with i variable having same/shared reference each time
 
 */
 

@@ -73,11 +73,22 @@ document.querySelector('#grandparent')
 },true)
 
 document.querySelector('#parent')
+.addEventListener('click',()=>{
+   // it will be stopped by stopImmediate propagation fn
+    console.log('capture: 1st listner : after')
+},true)
+
+document.querySelector('#parent')
 .addEventListener('click',(e)=>{
-    e.stopPropagation()
-   //  e.stopImmediatePropagation()
    //  e.stopPropagation()
-   console.log('capture phase: parent1')
+    e.stopImmediatePropagation()
+   console.log('capture phase: 2nd listener : parent1')
+},true)
+
+document.querySelector('#parent')
+.addEventListener('click',()=>{
+   // it will be stopped by stopImmediate propagation fn
+    console.log('capture: 2nd listner : after')
 },true)
 
 document.querySelector('#child')
@@ -85,11 +96,7 @@ document.querySelector('#child')
    console.log('capture phase: child')
 },true)
 
-// document.querySelector('#parent')
-// .addEventListener('click',()=>{
-//    // it will be stopped by stopImmediate propagation fn
-//     console.log('capture: onload event')
-// },true)
+
 
 
 

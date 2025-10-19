@@ -122,6 +122,34 @@ prom.then((res) => {
   console.log('err: ', err);
 })
 
+/*
+🔹 How your code runs
+
+1. Outer promise created → prom.
+  -> Executor runs immediately.
+  -> Calls resolveOuter(innerPromise).
+  -> At this point, the outer promise prom is pending but linked to the 
+     inner promise.
+
+2. Inner promise logic:
+   -> After 5 seconds, rejectInner("InnerReject") runs.
+   -> That makes the inner promise rejected.
+
+3. Because prom is following the inner promise:
+   -> Outer promise prom also becomes rejected with "InnerReject".
+
+4. The .then handlers are skipped, and the .catch runs:
+
+
+🔹 Why does it go to catch?
+
+Because the outer promise adopts the state of the inner one.
+If the inner resolves, outer resolves → .then runs.
+If the inner rejects, outer rejects → .catch runs.
+
+✅ So the rule: If you resolve a promise with another promise, the outer 
+   one mirrors the inner one’s state.
+*/
 
 
 

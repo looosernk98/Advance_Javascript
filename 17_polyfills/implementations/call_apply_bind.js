@@ -74,3 +74,4 @@ Function.prototype.myCall = function (thisArg, ...args) { // rest operator
   
 const boundGreet = greet.myBind(person, "Hey");
 console.log(boundGreet("!!")); // "Hey, Alice!!"
+

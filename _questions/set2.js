@@ -57,6 +57,22 @@ const flattenArray = (arr) =>{
    }
    return ans;
 }
+
+// RECURSIVE SOLUTION
+function flattenArray(value) {
+  let arr = []
+  let stack = [...value];
+
+  while(stack.length){
+    const ele = stack.pop();
+    if(Array.isArray(ele)){
+      ele.forEach((ele) => stack.push(ele)); // pushing all elements of arr to back to stack 
+    }else{
+      arr.unshift(ele); // adding it in front of array to maintain order
+    }
+  }
+  return arr;
+}
 console.log(flattenArray(arr));
 // ************************************** QUESTION 3 *****************************************
 

@@ -124,6 +124,24 @@ Array.prototype.filter = function (fn, thisp) {
   // ********************************************************* Reduce ***********************************************************************
   
   let marks = [10, 20, 30];
+
+  Array.prototype.myReduce = function (callbackFn, initialValue) {
+    if (!callbackFn || typeof callbackFn !== "function") throw new Error("cb must be a function");
+  
+    if(initialValue === undefined && this.length === 0) throw new Error("no intial value and empty array")
+      
+    let res = arguments.length === 1 ? this[0] : initialValue;
+  
+    for (let i = 0; i < this.length; i++) {
+      if ((i === 0 && arguments.length === 1) || this[i] === undefined) {
+         continue;
+      }
+  
+      res = callbackFn(res, this[i], i, this);
+    }
+    return res;
+  };
+  
   
   Array.prototype.myReduce =  function(callback, initial) {
     if (!callback || typeof callback !== "function") {

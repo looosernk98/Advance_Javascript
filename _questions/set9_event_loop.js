@@ -265,3 +265,34 @@ promise
   });
 
 console.log("Script end");
+
+
+// ============ nextTick
+
+console.log("start");
+
+process.nextTick(() => {
+  console.log("nextTick");
+});
+
+Promise.resolve().then(() => {
+  console.log("promise");
+});
+
+console.log("end");
+
+
+// ======== 
+console.log("start");
+
+setImmediate(() => {
+  console.log("setImmediate");
+});
+
+setTimeout(() => {
+  console.log("timeout");
+}, 0);
+
+console.log("end");
+
+

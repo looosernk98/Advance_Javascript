@@ -12,6 +12,16 @@ var obj = new MyFunc();
 console.log('obj: ', obj);
 console.log(obj.x); // 100
 
+function Person(name, age) {
+  // 1. new {} is created
+  // 2. {}.__proto__ = Person.prototype
+  // 3. this = {}
+  this.name = name;
+  this.age = age;
+  // 4. return this (unless constructor explicitly returns an object)
+}
+
+
 /*
 
 Here's what happens behind the scenes when the new keyword is used:

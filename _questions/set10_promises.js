@@ -107,7 +107,49 @@ loopExample();
 
 // How would you handle a scenario where you want to process 100 tasks but only allow 5 concurrent promises at any given time?
 
+async function runWithConcurrencyLimit(tasks, limit = 5) {
+    const results = [];
+    let i = 0;
+  
+    async function worker() {
+      while (i < tasks.length) {
+        const currentIndex = i++;
+        const result = await tasks[currentIndex]();
+        results[currentIndex] = result;
+      }
+    }
+  
+    // Start `limit` workers
+    const workers = [];
+    for (let j = 0; j < limit; j++) {
+      workers.push(worker());
+    }
+  
+    await Promise.all(workers);
+    return results;
+}
 
+  const tasks = Array.from({ length: 100 }, (_, i) => () =>
+    new Promise(res => setTimeout(() => res(i), 1000))
+  );
+
+runWithConcurrencyLimit(tasks, 5).then(results => {
+  console.log("All done", results);
+});
+
+// ✅ Key Notes
+
+// This pattern is important when:
+
+// Calling APIs with rate limits.
+
+// Downloading large files concurrently.
+
+// Heavy CPU / memory operations in Node.
+
+// The first approach is pure JS, works anywhere.
+
+// Libraries like p-limit are more readable and handle edge cases well.
 
 //========================================================================
 // 9. What are the subtle differences between Promise.all(), Promise.race(), 

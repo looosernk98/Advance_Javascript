@@ -54,7 +54,7 @@ function sum(...args) {
 
 let curriedsum = curry(sum);
 
-console.log(curriedsum(1, 2, 3));  // 6, still callable normally
+console.log(curriedsum(1, 2, 3, 4, 5));  // 6, still callable normally
 console.log(curriedsum(1)(2, 3));   // 6, currying of 1st arg
 console.log(curriedsum(1)(2)(3)); // 6, full currying
 

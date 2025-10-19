@@ -111,4 +111,70 @@ User.prototype = {
   };
   
 // now constructor is also correct, because we added it
-  
+
+
+/*
+
+1. What is constructor?
+
+Every function in JS automatically gets a .prototype object created for it.
+That .prototype object gets a constructor property pointing back to the function.
+
+function Person(name) {
+  this.name = name;
+}
+
+console.log(Person.prototype.constructor === Person); // true
+
+So when you create an instance:
+
+const p1 = new Person("Niranjan");
+console.log(p1.constructor === Person); // true
+
+It works because:
+p1 → Person.prototype → { constructor: Person } → Object.prototype
+
+
+
+*/
+
+// 2. If you create an object normally (not via constructor)
+const obj = {};
+console.log(obj.constructor === Object); // true
+// Why?
+// Because {} is created by new Object(). Its prototype is Object.prototype, which 
+// has constructor: Object.
+
+// ====================================================
+
+// 3. If you mess with __proto__ or prototype
+const ob = {};
+ob.__proto__ = { a: 10 };
+
+console.log(ob.constructor); // undefined
+
+// Here, the new prototype { a: 10 } does not have a constructor property.
+// So now the object can’t tell “who constructed me.”
+
+/*
+4. Rule of thumb
+
+Constructor functions: Instances inherit a constructor property via their prototype.
+
+Built-in objects: {}, [], etc. get their constructor via Object.prototype 
+or Array.prototype.
+
+If you replace the prototype: Unless you manually re-add constructor, it gets “lost.”
+*/
+function Person() {}
+Person.prototype = { greet() { console.log("hi"); } };
+
+const p = new Person();
+console.log(p.constructor); // ❌ not Person, but Object (inherited from Object.prototype)
+
+Object.defineProperty(Person.prototype, "constructor", {
+  value: Person,
+  enumerable: false
+});
+
+console.log(p.constructor === Person); // ✅ true again

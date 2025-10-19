@@ -1,12 +1,14 @@
-const parent = {
+  const parent = {
     value: 2,
     method() {
       return this.value + 1;
     },
   };
+
   const child = {
     __proto__: parent,
   };
+
   console.log("parent.method()", parent.method());
   console.log("before adding value param  child.method()", child.method());
   child.value = 4;
@@ -30,7 +32,6 @@ function person(name, age) {
   function get_percentage() {
     return this.marks / 99;
   }
-  
   let student = new student_marks("Vineet", 20, "Maths", 27);
   console.log('student: ', student);
   console.log(
@@ -82,7 +83,8 @@ Object.getPrototypeOf(object) === Object.prototype; // true
 // Array literals automatically have `Array.prototype` as their `[[Prototype]]`
 const array = [1, 2, 3];
 console.log(Object.getPrototypeOf(array) === Array.prototype); // true
-console.log(Object.getPrototypeOf(Array.prototype) === Object.prototype)
+console.log(Object.getPrototypeOf(array) === Object.prototype) // false
+console.log(Object.getPrototypeOf(Array.prototype) === Object.prototype) // true
 
 // RegExp literals automatically have `RegExp.prototype` as their `[[Prototype]]`
 const regexp = /abc/;

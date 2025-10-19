@@ -10,6 +10,35 @@ Used cases:
 -> text-field auto-saves
 -> eliminating double-button clicks
 
+
+function debounce(func, wait){
+  let timerId;
+  
+  return function(...args){
+     clearTimeout(timerId);
+     
+     timerId = setTimeout(() => {
+       console.log("this: ", this);
+       func.apply(this, args)
+     }, wait);
+  }
+}
+
+function fetchData (url){
+  console.log("fetch this: ", this)
+  console.log("fetching data...", url)
+}
+
+const debouncedFn = debounce(fetchData, 3000)
+
+const config = {
+  params:{
+    type:'abcd'
+  },
+  debouncedFn
+}
+config.debouncedFn('api_url')
+
 */
 
 let counter = 0;

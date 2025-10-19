@@ -8,6 +8,7 @@ const observer = new IntersectionObserver(callback, options)
 
 // Create the intersection observer callback function
 function callback(entries){
+   console.log('entries: ', entries);
    entries.forEach((entry) => {
      if(entry.isIntersecting){
          loadMoreContent()

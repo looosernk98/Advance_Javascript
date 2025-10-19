@@ -1,31 +1,31 @@
-// // // const person = {
-// // //   name: "alex",
-// // //   age: 23,
-// // // }
+// const person = {
+//   name: "alex",
+//   age: 23,
+// }
 
-// // // person.age = 26;
+// person.age = 26;
 
-// // // person = {
-// // //   name: "abc"
-// // // }
+// person = {
+//   name: "abc"
+// }
 
-// // let a = 10;
-// // function outer(){
-// //   // let a = 10;
+// let a = 10;
+function outer(){
+  let a = 10;
   
-// //   function inner(){
-// //     console.log(a);
-// //     a++;
-// //   }
+  function inner(){
+    console.log(a);
+    a++;
+  }
   
-// //   inner()
-// // }
+  inner()
+}
 
-// // outer()
+outer()
 
-// // outer()
+outer()
 
-// // outer()
+outer()
 
 // // // for()
 
@@ -119,6 +119,31 @@ function flattenObject(obj, prefix = '', result = {}) {
     }
     return result;
 }
+
+// Method 2: 
+function flatten(obj){
+    const res = {};
+     
+    for(let [key, value] of Object.entries(obj)){
+        if(Array.isArray(value)){
+          res[key] = value;
+        }else if(typeof value === 'object'){
+          const flattenObj = flatten(value)
+          for(let [ckey, cvalue] of Object.entries(flattenObj)){
+            const newKey = key + "." + ckey
+            res[newKey] = cvalue;
+          }
+          
+        }else{
+          res[key] = value;
+        }
+    }
+    return res;
+  }
+  
+  
+  const res = flatten(userProfile);
+  console.log(res);
 
 // // Method 2: More functional approach
 // function flattenObjectFunctional(obj, prefix = '') {

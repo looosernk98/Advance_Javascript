@@ -33,7 +33,7 @@ function outerfunction(...args) {
               innerCounter+=1;
   
               console.log("couner : ",counter, " ", "innerCouneter",innerCounter);
-           },5000)
+           },500)
   
       }, 1000)
   }

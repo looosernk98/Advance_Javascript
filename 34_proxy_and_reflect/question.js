@@ -8,7 +8,9 @@ let array = [];
 const arrayHandler = {
   set(target, property, value) {
     // console.log('target, property, value: ', target, property, value);
-    // Only log when a numeric index is set (element added), not when length changes, otherwise it prints two times one for item added and second for length increment
+    // Only log when a numeric index is set (element added), not when length 
+    // changes, otherwise it prints two times one for item added and second 
+    // for length increment
     if (!isNaN(property) && property !== 'length') {
       console.log(`Element added: ${value}`);
     }
