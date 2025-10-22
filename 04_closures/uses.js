@@ -114,4 +114,24 @@ function createGreeter(greeting) {
       
       const addFive = add(5);
       console.log(addFive(10)); // 15
+
+
+  // This is an example of nested closures — closures can form over multiple outer functions.
+    function A(){
+      const a = 9;
+      function B(){
+        const b = 10;
+        console.log(a,b)
+        function C(){
+          const c = 12;
+          console.log(a, b, c)
+        }
+        return C;
+      }
+      return B()
+    }
+
+    const func = A()
+    func()
+
       

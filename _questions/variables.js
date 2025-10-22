@@ -44,6 +44,10 @@ function test() {
 // }
 
 // obj.printname()
+
+"1.1" + "1.1"; // '1.11.1'
+(+"1.1") + (+"1.1"); // 2.2
+// Note: the parentheses are added for clarity, not required.
   
 
   

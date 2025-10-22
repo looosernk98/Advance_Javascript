@@ -174,3 +174,4 @@ element.addEventListener('scroll', () => {
 
 ## Browser Compatibility
 All three properties (`scrollTop`, `scrollHeight`, `clientHeight`) are supported in all modern browsers and IE9+.
+

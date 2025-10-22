@@ -42,41 +42,13 @@ function outerfunction(...args) {
       Counter()
   }
   
-  // ***************************************** example 3 ***************************************************************//
-  
-  var counter = (function () {
-    var privateCounter = 0;
-    function changeBy(val) {
-      privateCounter += val;
-    }
-    return {
-      increment: function () {
-        changeBy(1);
-      },
-      decrement: function () {
-        changeBy(-1);
-      },
-      value: function () {
-        return privateCounter;
-      }
-    };
-  })();
-  
-  //   console.log(counter)
-  //   console.log(counter.value()); // 0
-  //   counter.increment();
-  //   counter.increment();
-  //   console.log(counter.value()); // 2
-  //   counter.decrement();
-  //   console.log(counter.value()); //
-  
-  // ********************************************** example 4 ***************************************************************//
+  // ********************************************** example 3 ***************************************************************//
   
   function outer() {
     let arr = [];
     let i;
     for (i = 0; i < 4; i++) {
-      arr[i] = function () { // is it a closure ????
+      arr[i] = function () { // is it a closure ???? yes
         return i;
       };
     }
@@ -90,7 +62,7 @@ function outerfunction(...args) {
   console.log(result[2]()); // 4
   console.log(result[3]()); // 4
    
-  //*************************************************** example 5 ***********************************************************************/
+  //*************************************************** example 4 ***********************************************************************/
   
   function outer() {
     function createClojure(val) {
@@ -116,7 +88,7 @@ function outerfunction(...args) {
   console.log(results[2]()); // 2
   console.log(results[3]()); // 3
   
-  // **************************************************************************
+  // *************************** Exmaple 5 ***********************************************
   
   for(var i=1; i<=5; i++){
       setTimeout(()=>{

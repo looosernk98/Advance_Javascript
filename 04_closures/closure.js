@@ -12,7 +12,7 @@ function along with its lexical scope bundled together forms a closure
 
 
 USES of closures:
-1. Mudule design pattern
+1. Module design pattern
 2. hiding implemenation details - it can be useful to create private variables or functions.
 
 
@@ -101,35 +101,11 @@ function A(){
 
 A()
 /* 
-  outer scope of B is global not Function A. scope is always referred in terms of 
-   where the decalaration of function is written
+  outer scope of B is global not Function A. 
+
+  ***** scope is always referred in terms of where the decalaration of function is written ****
 */
 function B(){ 
     console.log(a)
 }
 
-// Closure is useful for hiding implementation details. See below example
-var counterObject = (function() {
-    var privateCounter = 0;
-    function changeBy(val) {
-      privateCounter += val;
-    }
-    return {
-      increment: function() {
-        changeBy(1);
-      },
-      decrement: function() {
-        changeBy(-1);
-      },
-      value: function() {
-        return privateCounter;
-      }
-    };   
-  })();
-  
-  console.log(counterObject.value()); // 0
-  counterObject.increment();
-  counterObject.increment();
-  console.log(counterObject.value()); // 2
-  counterObject.decrement();
-  console.log(counterObject.value()); // 1

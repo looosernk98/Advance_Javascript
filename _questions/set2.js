@@ -75,9 +75,24 @@ function flattenArray(value) {
 }
 console.log(flattenArray(arr));
 // ************************************** QUESTION 3 *****************************************
-
+const action = "say_hello";
+switch (action) {
+  case "say_hello":
+    const message = "hello";
+    console.log(message);
+    break;
+  case "say_hi":
+    const message = "hi";
+    console.log(message);
+    break;
+  default:
+    console.log("Empty action received.");
+}
 // *************************************** QUESTION 4****************************************
-
+switch (undefined) {
+  case console.log(1):
+  case console.log(2):
+}
 // **************************************** QUESTION 5 ***************************************
 // **************************************** QUESTION 6 ***************************************
 

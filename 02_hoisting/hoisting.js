@@ -3,6 +3,10 @@
 hoisting : hoisting allows you to access variables and functions ecven before 
            it's *declaration*
 
+JavaScript Hoisting refers to the process whereby the interpreter appears to 
+move the declaration of functions, variables, classes, or imports to the top 
+of their scope, prior to execution of the code.
+
 */
 
 //********************************** Variable hoisting **********************/
@@ -124,8 +128,8 @@ function example(a) {
   console.log(a); // Output ?
   var a = 20;
   console.log(a); // Output ?
-  function a() {}
-  console.log(a); // Output ?
+//   function a() {}
+//   console.log(a); // Output ?
 }
 
 example(10);
@@ -189,6 +193,32 @@ console.log(a);
    -> Still 20
    -> Output: 20
 */
+
+
+function A(b){
+  console.log(b)// declaration hoisted (but ignored since `b` already exists as a parameter)
+  // parameters have higher priority than var declarations
+  var b = 20
+  console.log(b)
+}
+
+A(10)
+
+/*
+Function parameters behave like var variables inside that function.
+
+If a var with the same name exists, its declaration is ignored.
+
+Hence, var b doesn’t overwrite or hoist above the parameter value — so the 
+parameter’s value (10) remains available for the first log.
+*/
+
+var u = 20;
+console.log(u)
+var u // will be ignored as u variable is already declared
+console.log(u)
+u = 30
+
 
 
 

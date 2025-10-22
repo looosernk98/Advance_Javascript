@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Object to Blob Conversion - Demo v2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .demo-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .demo-area {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 5px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .output {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+            min-height: 60px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .success {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .info {
+            color: #17a2b8;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 14px;
+            margin: 10px 0;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #333;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .blob-info {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .blob-info p {
+            margin: 5px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Object to Blob Conversion Demo</h1>
+        
+        <div style="background: #d4edda; color: #155724; padding: 10px; border-radius: 6px; margin-bottom: 20px; font-family: monospace; text-align: center;">
+            <span id="versionCheck">⏳ Checking version...</span>
+        </div>
+
+        <!-- Demo 1: Basic Conversion -->
+        <div class="card">
+            <h2>1️⃣ Basic Object to Blob Conversion</h2>
+            <p>Convert a JavaScript object to a Blob and see its properties</p>
+            
+            <label class="label">Edit the JSON object:</label>
+            <textarea id="jsonInput">{
+  "name": "niranjan",
+  "age": 27,
+  "skills": ["react", "javascript"],
+  "education": {
+    "degree": "B.Tech",
+    "cgpa": 8.4
+  }
+}</textarea>
+
+            <button onclick="demo1_convertToBlob()">Convert to Blob</button>
+            <button onclick="demo1_readBlob()">Read Blob Content</button>
+            
+            <div id="output1" class="output">Click "Convert to Blob" to start...</div>
+        </div>
+
+        <!-- Demo 2: Download as File -->
+        <div class="card">
+            <h2>2️⃣ Download Object as File</h2>
+            <p>Download your JavaScript object as a JSON, CSV, or Text file</p>
+            
+            <div class="button-group">
+                <button onclick="demo2_downloadJSON()">📥 Download as JSON</button>
+                <button onclick="demo2_downloadCSV()">📊 Download as CSV</button>
+                <button onclick="demo2_downloadText()">📄 Download as Text</button>
+            </div>
+            
+            <div id="output2" class="output">Click any button to download...</div>
+        </div>
+
+        <!-- Demo 3: Upload Simulation -->
+        <div class="card">
+            <h2>3️⃣ FormData Upload Simulation</h2>
+            <p>See how objects are converted to Blobs for API uploads</p>
+            
+            <button onclick="demo3_simulateUpload()">📤 Simulate Upload</button>
+            
+            <div id="output3" class="output">Click to simulate upload...</div>
+        </div>
+
+        <!-- Demo 4: Blob URL Creation -->
+        <div class="card">
+            <h2>4️⃣ Create Blob URL & Preview</h2>
+            <p>Convert object to HTML Blob and display in iframe</p>
+            
+            <button onclick="demo4_createBlobURL()">🔗 Create Blob URL</button>
+            <button onclick="demo4_showPreview()">👁️ Show Preview</button>
+            
+            <div id="output4" class="output">Click to create Blob URL...</div>
+            
+            <iframe id="preview" style="width: 100%; height: 300px; border: 2px solid #ddd; border-radius: 6px; margin-top: 15px; display: none;"></iframe>
+        </div>
+
+        <!-- Demo 5: Clipboard Copy -->
+        <div class="card">
+            <h2>5️⃣ Copy Object to Clipboard</h2>
+            <p>Convert object to Blob and copy to clipboard</p>
+            
+            <button onclick="demo5_copyToClipboard()">📋 Copy to Clipboard</button>
+            <button onclick="demo5_pasteFromClipboard()">📌 Paste from Clipboard</button>
+            
+            <div id="output5" class="output">Click to copy object...</div>
+        </div>
+
+        <!-- Demo 6: Multiple Objects Combining -->
+        <div class="card">
+            <h2>6️⃣ Combine Multiple Objects</h2>
+            <p>Create a single Blob from multiple objects (NDJSON format)</p>
+            
+            <button onclick="demo6_combineObjects()">🔄 Combine & Download</button>
+            
+            <div id="output6" class="output">Click to combine objects...</div>
+        </div>
+
+        <!-- Demo 7: Blob Storage -->
+        <div class="card">
+            <h2>7️⃣ Blob Storage (In-Memory)</h2>
+            <p>Store and retrieve objects using Blob-based storage</p>
+            
+            <label class="label">Key:</label>
+            <input type="text" id="storageKey" value="user_data" placeholder="Enter key">
+            
+            <div class="button-group">
+                <button onclick="demo7_store()">💾 Store Object</button>
+                <button onclick="demo7_retrieve()">📂 Retrieve Object</button>
+                <button onclick="demo7_delete()">🗑️ Delete</button>
+            </div>
+            
+            <div id="output7" class="output">Blob storage ready...</div>
+        </div>
+
+        <!-- Demo 8: Performance Comparison -->
+        <div class="card">
+            <h2>8️⃣ Performance Test</h2>
+            <p>Compare blob operations with different data sizes</p>
+            
+            <button onclick="demo8_performanceTest()">⚡ Run Performance Test</button>
+            
+            <div id="output8" class="output">Click to run tests...</div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentBlob = null;
+        let blobURL = null;
+        const blobStorage = new Map();
+
+        const sampleObject = {
+            name: "niranjan",
+            age: 27,
+            skills: ["react", "javascript", "node.js"],
+            education: {
+                degree: "B.Tech",
+                cgpa: 8.4
+            }
+        };
+
+        // Demo 1: Basic Conversion
+        function demo1_convertToBlob() {
+            try {
+                const jsonText = document.getElementById('jsonInput').value;
+                const obj = JSON.parse(jsonText);
+                
+                currentBlob = new Blob([JSON.stringify(obj, null, 2)], { 
+                    type: "application/json" 
+                });
+                
+                document.getElementById('output1').innerHTML = `✅ Blob created successfully!
+
+<span class="highlight">Blob Properties:</span>
+• Size: ${currentBlob.size} bytes
+• Type: ${currentBlob.type}
+• Object Keys: ${Object.keys(obj).join(', ')}
+
+The object has been converted to a Blob and stored in memory.`;
+            } catch (e) {
+                document.getElementById('output1').innerHTML = `❌ Error: ${e.message}`;
+            }
+        }
+
+        async function demo1_readBlob() {
+            if (!currentBlob) {
+                document.getElementById('output1').innerHTML = '⚠️ Please convert to Blob first!';
+                return;
+            }
+            
+            const text = await currentBlob.text();
+            const obj = JSON.parse(text);
+            
+            document.getElementById('output1').innerHTML = `✅ Blob content read successfully!
+
+<span class="highlight">Parsed Object:</span>
+${JSON.stringify(obj, null, 2)}`;
+        }
+
+        // Demo 2: Download Files
+        function demo2_downloadJSON() {
+            const blob = new Blob([JSON.stringify(sampleObject, null, 2)], { 
+                type: "application/json" 
+            });
+            downloadBlob(blob, 'person.json');
+            
+            document.getElementById('output2').innerHTML = 
+                '✅ JSON file downloaded! Check your Downloads folder.';
+        }
+
+        function demo2_downloadCSV() {
+            const users = [
+                { name: 'John', age: 30, city: 'New York' },
+                { name: 'Jane', age: 25, city: 'London' },
+                { name: 'Bob', age: 35, city: 'Paris' }
+            ];
+            
+            const headers = Object.keys(users[0]).join(',');
+            const rows = users.map(user => Object.values(user).join(',')).join('\n');
+            const csv = `${headers}\n${rows}`;
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            downloadBlob(blob, 'users.csv');
+            
+            document.getElementById('output2').innerHTML = 
+                '✅ CSV file downloaded! Check your Downloads folder.';
+        }
+
+        function demo2_downloadText() {
+            const text = `Person Information\n\nName: ${sampleObject.name}\nAge: ${sampleObject.age}\nSkills: ${sampleObject.skills.join(', ')}`;
+            
+            const blob = new Blob([text], { type: 'text/plain' });
+            downloadBlob(blob, 'person.txt');
+            
+            document.getElementById('output2').innerHTML = 
+                '✅ Text file downloaded! Check your Downloads folder.';
+        }
+
+        // Demo 3: Upload Simulation
+        function demo3_simulateUpload() {
+            const blob = new Blob([JSON.stringify(sampleObject)], { 
+                type: "application/json" 
+            });
+            
+            const formData = new FormData();
+            formData.append('data', blob, 'data.json');
+            
+            document.getElementById('output3').innerHTML = `✅ Upload simulation prepared!
+
+<span class="highlight">FormData Details:</span>
+• File Name: data.json
+• Content Type: application/json
+• Size: ${blob.size} bytes
+
+<span class="highlight">How this works:</span>
+1. Object → JSON string → Blob
+2. Blob → FormData (as file)
+3. FormData → fetch() POST request
+
+In real scenario, you would send this to:
+fetch('/api/upload', { method: 'POST', body: formData })`;
+        }
+
+        // Demo 4: Blob URL
+        function demo4_createBlobURL() {
+            const blob = new Blob([JSON.stringify(sampleObject, null, 2)], { 
+                type: "application/json" 
+            });
+            
+            if (blobURL) {
+                URL.revokeObjectURL(blobURL);
+            }
+            
+            blobURL = URL.createObjectURL(blob);
+            
+            document.getElementById('output4').innerHTML = `✅ Blob URL created!
+
+<span class="highlight">Generated URL:</span>
+${blobURL}
+
+<span class="highlight">Note:</span>
+This URL is temporary and only works in this browser session.
+It starts with "blob:" protocol.`;
+        }
+
+        function demo4_showPreview() {
+            const htmlContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>
+                        body { 
+                            font-family: monospace; 
+                            padding: 20px;
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        }
+                        pre { 
+                            background: white; 
+                            padding: 20px; 
+                            border-radius: 10px;
+                            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                        }
+                        h2 { color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+                    </style>
+                </head>
+                <body>
+                    <h2>🎯 Object Preview</h2>
+                    <pre>${JSON.stringify(sampleObject, null, 2)}</pre>
+                </body>
+                </html>
+            `;
+            
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            
+            document.getElementById('preview').src = url;
+            document.getElementById('preview').style.display = 'block';
+            document.getElementById('output4').innerHTML = '✅ Preview loaded in iframe below!';
+        }
+
+        // Demo 5: Clipboard
+        async function demo5_copyToClipboard() {
+            try {
+                const blob = new Blob([JSON.stringify(sampleObject, null, 2)], { 
+                    type: 'text/plain' 
+                });
+                
+                const clipboardItem = new ClipboardItem({
+                    'text/plain': blob
+                });
+                
+                await navigator.clipboard.write([clipboardItem]);
+                
+                document.getElementById('output5').innerHTML = 
+                    '✅ Object copied to clipboard! Try pasting (Ctrl+V) in any text editor.';
+            } catch (e) {
+                document.getElementById('output5').innerHTML = 
+                    `❌ Clipboard API error: ${e.message}`;
+            }
+        }
+
+        async function demo5_pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                const obj = JSON.parse(text);
+                
+                const output = `
+✅ Pasted and parsed from clipboard!
+
+<span class="highlight">Parsed Object:</span>
+${JSON.stringify(obj, null, 2)}
+                `.trim();
+                
+                document.getElementById('output5').innerHTML = output;
+            } catch (e) {
+                document.getElementById('output5').innerHTML = 
+                    `❌ Error: ${e.message}`;
+            }
+        }
+
+        // Demo 6: Combine Objects
+        function demo6_combineObjects() {
+            const objects = [
+                { id: 1, name: 'Alice', role: 'Developer' },
+                { id: 2, name: 'Bob', role: 'Designer' },
+                { id: 3, name: 'Charlie', role: 'Manager' }
+            ];
+            
+            // NDJSON format (Newline Delimited JSON)
+            const ndjson = objects.map(obj => JSON.stringify(obj)).join('\n');
+            
+            const blob = new Blob([ndjson], { type: 'application/x-ndjson' });
+            downloadBlob(blob, 'combined.ndjson');
+            
+            document.getElementById('output6').innerHTML = `✅ Combined ${objects.length} objects into single Blob!
+
+<span class="highlight">Format: NDJSON (Newline Delimited JSON)</span>
+Each line is a separate JSON object.
+
+Preview:
+${ndjson}
+
+File downloaded as: combined.ndjson`;
+        }
+
+        // Demo 7: Blob Storage
+        function demo7_store() {
+            const key = document.getElementById('storageKey').value;
+            
+            const blob = new Blob([JSON.stringify(sampleObject)], { 
+                type: "application/json" 
+            });
+            const url = URL.createObjectURL(blob);
+            
+            blobStorage.set(key, url);
+            
+            document.getElementById('output7').innerHTML = 
+                `✅ Object stored with key: "${key}"\nStorage size: ${blobStorage.size} item(s)`;
+        }
+
+        async function demo7_retrieve() {
+            const key = document.getElementById('storageKey').value;
+            const url = blobStorage.get(key);
+            
+            if (!url) {
+                document.getElementById('output7').innerHTML = 
+                    `⚠️ No data found for key: "${key}"`;
+                return;
+            }
+            
+            const response = await fetch(url);
+            const text = await response.text();
+            const obj = JSON.parse(text);
+            
+            document.getElementById('output7').innerHTML = `✅ Retrieved from storage!
+
+<span class="highlight">Key: ${key}</span>
+
+Object:
+${JSON.stringify(obj, null, 2)}`;
+        }
+
+        function demo7_delete() {
+            const key = document.getElementById('storageKey').value;
+            const url = blobStorage.get(key);
+            
+            if (url) {
+                URL.revokeObjectURL(url);
+                blobStorage.delete(key);
+                document.getElementById('output7').innerHTML = 
+                    `✅ Deleted key: "${key}"\nStorage size: ${blobStorage.size} item(s)`;
+            } else {
+                document.getElementById('output7').innerHTML = 
+                    `⚠️ Key "${key}" not found`;
+            }
+        }
+
+        // Demo 8: Performance Test
+        function demo8_performanceTest() {
+            const results = [];
+            
+            // Test 1: Small object
+            const smallObj = { id: 1, name: 'Test' };
+            const start1 = performance.now();
+            const blob1 = new Blob([JSON.stringify(smallObj)], { type: 'application/json' });
+            const end1 = performance.now();
+            results.push(`Small object (2 keys): ${(end1 - start1).toFixed(4)}ms, Size: ${blob1.size} bytes`);
+            
+            // Test 2: Medium object
+            const mediumObj = Array(100).fill(null).map((_, i) => ({ 
+                id: i, 
+                name: `User ${i}`, 
+                email: `user${i}@example.com` 
+            }));
+            const start2 = performance.now();
+            const blob2 = new Blob([JSON.stringify(mediumObj)], { type: 'application/json' });
+            const end2 = performance.now();
+            results.push(`Medium object (100 items): ${(end2 - start2).toFixed(4)}ms, Size: ${blob2.size} bytes`);
+            
+            // Test 3: Large object
+            const largeObj = Array(1000).fill(null).map((_, i) => ({ 
+                id: i, 
+                name: `User ${i}`, 
+                email: `user${i}@example.com`,
+                metadata: { created: new Date().toISOString() }
+            }));
+            const start3 = performance.now();
+            const blob3 = new Blob([JSON.stringify(largeObj)], { type: 'application/json' });
+            const end3 = performance.now();
+            results.push(`Large object (1000 items): ${(end3 - start3).toFixed(4)}ms, Size: ${blob3.size} bytes`);
+            
+            document.getElementById('output8').innerHTML = `<span class="highlight">⚡ Performance Test Results:</span>
+
+${results.join('\n')}
+
+<span class="success">✅ All tests completed!</span>
+Note: Blob creation is very fast even for large objects.`;
+        }
+
+        // Helper function to download blob
+        function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Initialize and verify all functions are loaded
+        window.addEventListener('DOMContentLoaded', function() {
+            const version = '2.0';
+            const requiredFunctions = [
+                'demo1_convertToBlob',
+                'demo1_readBlob',
+                'demo2_downloadJSON',
+                'demo2_downloadCSV',
+                'demo2_downloadText',
+                'demo3_simulateUpload',
+                'demo4_createBlobURL',
+                'demo4_showPreview',
+                'demo5_copyToClipboard',
+                'demo5_pasteFromClipboard',
+                'demo6_combineObjects',
+                'demo7_store',
+                'demo7_retrieve',
+                'demo7_delete',
+                'demo8_performanceTest',
+                'downloadBlob'
+            ];
+            
+            const missing = requiredFunctions.filter(fn => typeof window[fn] !== 'function');
+            const versionCheck = document.getElementById('versionCheck');
+            
+            if (missing.length === 0) {
+                versionCheck.innerHTML = `✅ <strong>Version ${version}</strong> - All demos loaded successfully! (${requiredFunctions.length} functions)`;
+                console.log('🎯 Blob Demo v' + version + ' Ready!');
+                console.log('✅ All', requiredFunctions.length, 'functions loaded successfully');
+                console.log('Sample Object:', sampleObject);
+            } else {
+                versionCheck.innerHTML = `❌ ERROR: Missing functions: ${missing.join(', ')}. Please refresh the page (Ctrl+Shift+R / Cmd+Shift+R)`;
+                versionCheck.parentElement.style.background = '#f8d7da';
+                versionCheck.parentElement.style.color = '#721c24';
+                console.error('❌ Missing functions:', missing);
+            }
+        });
+
+        console.log('🎯 Blob Demo Script Loading...');
+    </script>
+</body>
+</html>
+
