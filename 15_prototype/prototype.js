@@ -162,7 +162,7 @@ function Person(first, last, age, eyecolor) {
   // Note: You can also access the prototype property of a constructor function from an object.
   
   // accessing prototype property
-  console.log(user.__proto__);   // { age: 24 }
+  console.log(user.__proto__);   // { name: 'Peter', age: 23  }
 
 
 // wrong, User is a constructor function, not object so can't access it's prototype 

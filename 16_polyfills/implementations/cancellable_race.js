@@ -10,6 +10,7 @@ tasks — and JS has no built-in way to cancel those tasks.
 
 // 1. With AbortController (for fetch)
 function cancellableFetch(url, controller) {
+  console.log("url fetching... ", url)
     return fetch(url, { signal: controller.signal });
   }
   
@@ -37,21 +38,26 @@ function cancellableFetch(url, controller) {
     function cancellablePromise(executor) {
         let cancel;
         const promise = new Promise((res, rej) => {
-          cancel = () => rej(new Error("cancelled"));
+          cancel = () => {
+            console.log("cancelling");
+            rej(new Error("cancelled"))
+          };
           executor(res, rej);
         });
         return { promise, cancel };
       }
       
-      const t1 = cancellablePromise((res) => setTimeout(() => res("t1 done"), 2000));
-      const t2 = cancellablePromise((res) => setTimeout(() => res("t2 done"), 3000));
+      // const t1 = cancellablePromise((res) => setTimeout(() => res("t1 done"), 2000));
+      // const t2 = cancellablePromise((res) => setTimeout(() => { 
+      //   console.log("running t2")
+      //   res("t2 done")}, 3000));
       
-      Promise.race([t1.promise, t2.promise]).then((result) => {
-        console.log("Winner:", result);
-        // cancel all others
-        t1.cancel();
-        t2.cancel();
-      });
+      // Promise.race([t1.promise, t2.promise]).then((result) => {
+      //   console.log("Winner:", result);
+      //   // cancel all others
+      //   t1.cancel();
+      //   t2.cancel();
+      // });
 
     //   👉 Once one settles, you manually cancel the rest.  
     
@@ -67,13 +73,27 @@ async function raceWithCancel(promises) {
           // cancel others
           promises.forEach(p => p.cancel?.());
           res(value);
-        }).catch(rej);
+        }).catch((err) => {
+            promises.forEach(p => p.cancel?.());
+            rej(err)
+        });
       });
     });
   }
   
 // ============================================================================
 
+function cancellablePromise(executor) {
+  let cancel;
+  const promise = new Promise((res, rej) => {
+    cancel = () => {
+      console.log("cancelling");
+      rej(new Error("cancelled"))
+    };
+    executor(res, rej);
+  });
+  return { promise, cancel };
+}
 function raceWithCancel(cancellables) {
     return new Promise((resolve, reject) => {
       let settled = false;
@@ -97,9 +117,18 @@ function raceWithCancel(cancellables) {
     });
   }
 
-const task1 = cancellablePromise(res => setTimeout(() => res("Task1 done"), 2000));
-const task2 = cancellablePromise(res => setTimeout(() => res("Task2 done"), 3000));
-const task3 = cancellablePromise(res => setTimeout(() => res("Task3 done"), 1000));
+const task1 = cancellablePromise(res => setTimeout(() => {
+  console.log("task1 runs")
+  res("Task1 done")
+}, 2000));
+const task2 = cancellablePromise(res => setTimeout(() => {
+  console.log("task2 runs")
+  res("Task2 done")}
+  , 3000));
+const task3 = cancellablePromise(res => setTimeout(() => {
+  console.log("task3 runs")
+  res("Task3 done")}
+  , 1000));
 
 raceWithCancel([task1, task2, task3])
   .then(result => console.log("Winner:", result))

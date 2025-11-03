@@ -1,9 +1,9 @@
 /*
 
-hoisting : hoisting allows you to access variables and functions ecven before 
+hoisting : hoisting allows you to access variables and functions even before 
            it's *declaration*
 
-JavaScript Hoisting refers to the process whereby the interpreter appears to 
+JavaScript Hoisting refers to the process whereby the interpreter/javascript appears to 
 move the declaration of functions, variables, classes, or imports to the top 
 of their scope, prior to execution of the code.
 
@@ -88,9 +88,10 @@ function add(a, b) {
 let n1 = 20,
     n2 = 10;
 
-let res = add_(n1,2); // ❌ Uncaught ReferenceError: add_ is not defined
+let res = add_(n1,2); // ❌ ReferenceError: Cannot access 'add_' before initialization
 console.log(res);
 
+// function expression
 let add_ = function(x, y) { // will beahve same in case of arrow function
     return x + y;
 }

@@ -55,7 +55,7 @@ function person(name, age) {
   }
   
   function student_marks(name, age, subject, marks) {
-    person.call(this, name, age);
+    person.call(this, name, age); // calling parent constructor
     this.subject = subject;
     this.marks = marks;
     this.get_percentage = get_percentage();
@@ -107,6 +107,8 @@ Function.prototype()
     return this.value;
   };
   const box = new Box(2);
+  console.log("box value before mutating", box.getValue());
+
   
   // Mutate Box.prototype after an instance has already been created
   Box.prototype.getValue = function () {
@@ -143,6 +145,42 @@ console.log(x.hasOwnProperty('b'))
 console.log(x.b)
 //Checks down until the null prototype
 console.log(x['a'])
-  //**************************************************************************************/
-  //**************************************************************************************/
-  //**************************************************************************************/
+
+
+//**************************************************************************************/
+
+
+const obj1 = {
+  name:"rahul",
+  ag:23
+}
+
+const propertyDescripterObj = {
+  state:{
+    // writable: true,
+    enumerable: true,
+    // configurable: true,
+    value: "Delhi",
+  },
+}
+
+const newObj = Object.create(obj1, propertyDescripterObj)
+newObj.male = true
+console.log('newObj: ', newObj);
+console.log('newObj prototype: ', newObj.__proto__);
+console.log(newObj.state);
+
+//**************************************************************************************/
+const detail = {
+  name : 'ravi',
+  age:45
+}
+detail.__proto__.gender = 'male'
+// NOTE: we can't add property directly with prototype in case of normal object
+// detail.prototype.gender = 'male'
+console.log('detail: ', detail);
+console.log('prototype: ', Object.getPrototypeOf(detail));
+console.log('prototype: ', detail.__proto__);
+console.log(detail.gender);
+
+//**************************************************************************************/

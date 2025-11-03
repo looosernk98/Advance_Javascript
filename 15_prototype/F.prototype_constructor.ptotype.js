@@ -35,7 +35,6 @@ let animal = {
 
 //************************* Default F.prototype, constructor property *********************************************************/
 
-
 /*
 
 Every function has the "prototype" property even if we don’t supply it.

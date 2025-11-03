@@ -111,6 +111,18 @@ const p = new Promise((res, rej) => {
   console.log(p === basicReturn()); // true
   console.log(p === asyncReturn()); // false
 
+  // *******************************************************************//
+
+  async function test() {
+    try {
+      return await Promise.reject('error');
+      // return Promise.reject('error'); // will throw error : handled rejection
+    } catch (e) {
+      return 'caught';
+    }
+  }
+   
+  test().then(console.log);
   
   // *******************************************************************//
 

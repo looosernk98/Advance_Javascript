@@ -111,3 +111,7 @@ const data = Promise.race([
     .catch((err) => displayError(err));
 
 /************************** Using Promise.race() to detect the status of a promise ***************/
+
+
+
+
