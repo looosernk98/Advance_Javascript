@@ -1,0 +1,7 @@
+/*
+
+ Pattern when you need to create families of related or dependent objects that 
+ must work together. It helps ensure that the created objects are compatible and 
+ cohesive.
+
+*/

@@ -3,7 +3,7 @@ Before code execution starts, in the creation phase JS creates memory and declar
 
 - Hoisting happens for both **variables** and **functions**
 
-- `var`, `let` and `const` are hoisted. `var` is kept undefined while `let` and `const` are kept in TDZ (Temporal Dead Zone)
+- `var`, `let` and `const` are hoisted. `var` is kept undefined while `let`, `class` and `const` are kept in TDZ (Temporal Dead Zone)
 
 - `function` and `async function` are hoisted, but **function expressions** and **arrow functions** are not.
 

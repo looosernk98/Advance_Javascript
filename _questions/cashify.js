@@ -237,8 +237,63 @@ console.log(flattened1);
 // });
 // console.log(flattened4);
 
+//******************** Flat an array with custom orderiong ******************/
+
+const arr = [1, [2, 3, [4,5, [6]]], 7, [9, [10, 11]]]
+
+// output: [1, 7,  2,  3, 9, 4, 5, 10, 11, 6]
+
+// DFS technique
+function flatWithCustomOrder(arr){
+  let ans = []
+  let immediateNestedArr = []
+  for(let v of arr){
+    if(Array.isArray(v)){
+      immediateNestedArr.push(...v)
+    }else{
+      ans.push(v)
+    }
+  }
+  if(immediateNestedArr.length){
+    const flattenedArr = flatWithCustomOrder(immediateNestedArr)
+    ans.push(...flattenedArr)
+  }
+  
+  return ans;
+}
 
 
+console.log(flatWithCustomOrder(arr))
+
+// BFS technique
+function flatWithCustomOrderBFS(arr){
+  const res = [];
+  const queue = [...arr];
+  while(queue.length){
+    const curr = queue.shift()
+    if(Array.isArray(curr)){
+      queue.push(...curr)
+    }else{
+      res.push(curr)
+    }
+  }
+  return res;
+}
+
+console.log(flatWithCustomOrderBFS(arr))
+/*
+How it works:
+
+- Queue initially contains all top-level elements
+- If element is:
+    - primitive → add to result
+    - array → push its children at end of queue
+- This ensures:
+    - current level processed first
+    - nested levels processed later
+
+This is essentially BFS flattening.
+*/
 
 
 

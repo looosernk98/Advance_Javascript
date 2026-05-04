@@ -46,7 +46,7 @@ const p2 = Promise.all([1, 2, 3, Promise.resolve(444)]);
 
 // One (and the only) input promise is rejected,
 // so the returned promise gets rejected
-const p3 = Promise.all([1, 2, 3, Promise.reject(555)]);
+const p3 = Promise.all([1, 2, 3, Promise.reject(555)]).catch((err) =>  err);
 
 // Using setTimeout, we can execute code after the queue is empty
 setTimeout(() => {

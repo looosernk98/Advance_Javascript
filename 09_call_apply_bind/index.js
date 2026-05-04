@@ -9,6 +9,9 @@ apply: binds 'this' value to the function,  invokes the function, and allows
 bind: binds the this value to the function, returns a new function, and allows 
       you to pass arguments individually.
 
+Normally, this depends on how a function is called.
+But with these methods, you can manually set this.
+
 */
 
 const user1 = {

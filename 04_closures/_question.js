@@ -119,6 +119,22 @@ function outerfunction(...args) {
  for(let i=0; i<5; i++){
      Counter()
  }
+
+/*
+OUTPUT: 
+
+counter :  1
+counter :  1
+counter :  1
+counter :  1
+counter :  1
+couner :  2   innerCouneter 1
+couner :  2   innerCouneter 1
+couner :  2   innerCouneter 1
+couner :  2   innerCouneter 1
+couner :  2   innerCouneter 1
+
+ */
  
  // ********************************************** example 3 ***************************************************************//
  
@@ -173,4 +189,39 @@ function outerfunction(...args) {
       console.log(i);
      },i*1000)
  }
+
+ // ==================================================================
+
+let count = 0;
+function makeCounter() {
+  return function() {
+    console.log(count++);
+    let count = 10;
+  }
+}
+const c = makeCounter();
+c();
+
+ // ==================================================================
+
+ function outer() {
+  let bigArray = new Array(1e6).fill('data');
+
+  function inner() {
+    return bigArray?.length;
+  };
+
+  return inner
+}
+const fn = outer();
+
+
+// Question: Is bigArray garbage collected?
+
+// Answer / Explanation: 
+// No — bigArray is retained because inner closes over it. 
+// As long as fn (the returned closure) is reachable, bigArray remains reachable 
+// and cannot be GC’d.
  
+ // ==================================================================
+ // ==================================================================

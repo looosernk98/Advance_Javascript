@@ -21,7 +21,8 @@ them and function declarations. When a variable is hoisted, only the declaration
 moved to the top, not the initialization. This means that the variable is accessible
 but undefined until it’s assigned a value.
 
-
+class is NOT hoisted like functions. class declarations are hoisted but kept in the 
+Temporal Dead Zone (TDZ)
 
 */
 
@@ -35,11 +36,11 @@ var counter = 1;
 // ===== The let keyword =====
 
 // The JavaScript issues the following error in case of let:
-console.log(num); // "ReferenceError: Cannot access 'counter' before initialization
+console.log(num); // "ReferenceError: Cannot access 'num' before initialization
 let num = 10;
 
 /*
- The error message explains that the counter variable is already in the heap 
+ The error message explains that the num variable is already in the heap 
  memory. However, it hasn’t been initialized.
  Behind the scenes, the JavaScript engine hoists the variable declarations 
  that use the let keyword. However, it doesn’t initialize the let variables.
@@ -77,7 +78,8 @@ function add(a, b) {
 
 /*
  During the creation phase of the execution context, the JavaScript engine 
- places the add() function declaration in the heap memory. To be precise, the 
+ places the add() function declaration in the heap memory. 
+ To be precise:
  JavaScript engine creates an object of the Function type and a function reference 
  add that refers to the function object.
 
@@ -129,8 +131,8 @@ function example(a) {
   console.log(a); // Output ?
   var a = 20;
   console.log(a); // Output ?
-//   function a() {}
-//   console.log(a); // Output ?
+  function a() {}
+  console.log(a); // Output ?
 }
 
 example(10);
@@ -145,7 +147,7 @@ example(10);
 /*
  Key concepts at play:
 
--> Function and variable declarations are hoisted.JS moves their declaration on 
+-> Function and variable declarations are hoisted. JS moves their declaration on 
    top of script
 -> Function declarations are hoisted before variable declarations.
 -> If a function and a variable have the same name, the function takes precedence 

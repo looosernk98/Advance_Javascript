@@ -15,7 +15,7 @@ Object.defineProperty(car, 'engine', {
     enumerable: false
 })
 
-console.log(Reflect.ownKeys(car)) // it also list propewrty that is non-enumerable
+console.log(Reflect.ownKeys(car)) // it also list property that is non-enumerable
 // Output: [ 'name', 'model', 'owner', 'engine' ]
 
 console.log(Object.keys(car)) // it only show public properties, non-enumrable property is not listed

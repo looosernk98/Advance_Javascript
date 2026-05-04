@@ -1,7 +1,6 @@
 // Can you explain what a web API is?
 
 
-
 function resolveAfter2Seconds() {
     console.log("starting slow promise");
     return new Promise((resolve) => {

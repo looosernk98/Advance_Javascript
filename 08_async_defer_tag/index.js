@@ -50,6 +50,12 @@
    asynchronously can speed up the page load time, because the browser can 
    download and execute them in parallel.
 
+  ✅ Behavior:
+  Script is downloaded in parallel
+  Executes as soon as it’s ready
+  Does NOT wait for HTML parsing
+  Order is NOT guaranteed
+
    <p>...content before scripts...</p>
 
     <script>
@@ -74,6 +80,11 @@
    that is dependent on other scripts, or if you want to improve the loading 
    time of your page by loading scripts after the initial page load.
 
+  ✅ Behavior:
+  Script is downloaded in parallel with HTML parsing
+  Execution happens after HTML is fully parsed
+  Maintains order of scripts
+
     <p>...content before script...</p>
 
     <script defer src="https://javascript.info/article/script-async-defer/long.js?speed=1"></script>
@@ -83,7 +94,12 @@
 
 */
 
+// ⚠️ Important Interview Points
 
+// defer scripts run before DOMContentLoaded
+// async scripts may run before or after DOMContentLoaded
+// Inline scripts (<script>...</script>) ignore async/defer
+// If both used → async wins
 
 
 /*

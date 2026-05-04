@@ -60,6 +60,7 @@ var y = 5;
   console.log(y);
 })()
 
+//****************************************************************************/
 function delay() {
   return new Promise(resolve => setTimeout(resolve, 1000));
 }
@@ -73,6 +74,9 @@ async function test() {
 
 test();
 console.log(3);
+
+// output : 1 3 2
+//****************************************************************************/
 
 let z = 1;
 {
