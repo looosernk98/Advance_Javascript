@@ -139,6 +139,15 @@ function foo() {
 }
 foo();
 
+// ======================== Question 13 ==========================================
+console.log(new hello(1).a);
+
+class hello {
+  constructor(a) {
+    this.a = a;
+  }
+}
+
 
 
 

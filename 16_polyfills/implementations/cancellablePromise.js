@@ -3,7 +3,7 @@ function cancellablePromise(executor){
   let cancel;
   const promise = new Promise((res, rej) => {
     cancel = () => {
-        rej(new Error("cancelled"))
+        rej(new Error("cancelled")) // reject promise only but work still continue - setTimeout will run
     }
     executor(res, rej)
   })
@@ -30,6 +30,7 @@ It’s just:
 const { promise, cancel} = cancellablePromise((res, rej) => {
     setTimeout(() => {
        res(100)
+       console.log("Resolved") // this will be printed evne after cancelling promise
     }, 3000)
 })
 
@@ -43,3 +44,44 @@ promise.then((result) => {
 setTimeout(() => {
    cancel()
 }, 1000)
+
+// ******************* Fix: Cancellable promise with actual work cancellation *******
+
+function cancellablePromise(executor) {
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  let rejectRef;
+
+  const promise = new Promise((resolve, reject) => {
+    rejectRef = reject;
+
+    // Pass signal to executor so it can cancel work
+    executor(resolve, reject, signal);
+  });
+
+  const cancel = () => {
+    controller.abort(); // cancel underlying work
+    rejectRef?.(new Error("Cancelled")); // reject promise
+  };
+
+  return { promise, cancel };
+}
+
+const { promise, cancel } = cancellablePromise((resolve, reject, signal) => {
+
+  const id = setTimeout(() => {
+    resolve("Done");
+    console.log("Resolved") // will not be printed
+  }, 3000);
+
+  signal.addEventListener("abort", () => {
+    clearTimeout(id); // ✅ stop actual work
+  });
+});
+
+setTimeout(cancel, 1000);
+
+promise
+  .then(console.log)
+  .catch(err => console.log(err.message));

@@ -8,9 +8,14 @@ TDZ refers to the Temporal Dead Zone, which is a time duration or period within 
 scope in JavaScript where variables declared with let or const exist but cannot be 
 accessed until they are initialized. 
 
+
 It's not a memory area, but a state of unreachability for these variables, a 
 "dead zone" that lasts from the start of the scope until the variable's 
 declaration line in the code
+
+variables in TDZ appear as <value unavailable>, which represents their internal 
+uninitialized state in the environment record. The engine prevents access by 
+checking this state and throwing a ReferenceError.”
 
 Why it exists: 
 -> The TDZ is a safeguard to help prevent potential issues with uninitialized 
@@ -105,3 +110,23 @@ Hoisting simply gives higher specificity to JavaScript declarations. Thus, it
 makes the computer read and process declarations first before analyzing any 
 other code in a program.
   */
+
+// for (let i = 0; i < 3; i++) {
+//   console.log(i);
+//   let i = 100;
+// }
+
+function test(a = b, b = 10) {
+  console.log(a, b);
+}
+
+test();
+// Execution order:
+// Parameters are initialized left → right
+// So:
+// a = b  ❌ (b not initialized yet → TDZ)
+// b = 10
+
+
+console.log(typeof a); // Even typeof cannot bypass TDZ
+let a = 10;

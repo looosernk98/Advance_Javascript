@@ -10,9 +10,9 @@ tasks — and JS has no built-in way to cancel those tasks.
 
 // 1. With AbortController (for fetch)
 function cancellableFetch(url, controller) {
-  console.log("url fetching... ", url)
+    console.log("url fetching... ", url)
     return fetch(url, { signal: controller.signal });
-  }
+}
   
   const controller1 = new AbortController();
   const controller2 = new AbortController();

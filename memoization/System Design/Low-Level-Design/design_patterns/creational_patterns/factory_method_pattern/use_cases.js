@@ -1,0 +1,6 @@
+/*
+
+Use the Factory Pattern when you want to encapsulate the object creation process 
+and provide a simple interface for creating objects with different implementations.
+
+*/

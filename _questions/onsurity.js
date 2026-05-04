@@ -98,3 +98,4 @@ console.log('res: ', res);
 
 const nums = [1,2,,,3]
 console.log(nums.reduce((p,c) => p+c))
+console.log({...nums}) // { '0': 1, '1': 2, '4': 3 }

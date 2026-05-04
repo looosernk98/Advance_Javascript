@@ -6,6 +6,57 @@ more readable and intuitive way compared to using Promises and .then() chains.
  promise-based APIs. The behavior of async/await is similar to combining generators 
  and promises.
 
+👉 async/await is NOT synchronous.
+👉 It just makes asynchronous code look synchronous.
+
+ Ques. How does async/await work under the hood?
+ - async/await is just syntactic sugar over Promises
+
+  What happens internally:
+
+  async function foo() {
+    console.log("A");
+    await Promise.resolve();
+    console.log("B");
+  }
+
+ Execution flow:
+
+1. Synchronous Execution (The Call Stack)
+The function foo() is called.
+The engine enters the function and executes console.log("A") immediately.
+Output: A
+
+2. Encountering await
+The engine reaches await Promise.resolve().
+Promise.resolve() creates an already resolved promise.
+Even though the promise is already resolved, the await keyword always yields control back to the main thread.
+The rest of the function (everything after await, which is console.log("B")) is wrapped into a callback and scheduled as a Microtask.
+The foo() function is "suspended," its execution context is popped off the Call Stack, and the engine continues executing any code that might be below the foo() call.
+
+3. The Microtask Queue
+Because the promise was already resolved, the "resume foo" task is placed into the Microtask Queue immediately.
+Microtask Queue State: [ Resume foo() ]
+
+4. Clearing the Call Stack
+The Event Loop waits until the Call Stack is completely empty (i.e., the initial script execution has finished).
+
+5. Executing Microtasks
+Once the Call Stack is empty, the Event Loop checks the Microtask Queue.
+It finds the "resume foo" task and pushes it back onto the Call Stack.
+The engine resumes foo() right where it left off.
+It executes console.log("B").
+Output: B
+
+  Equivalent:
+
+  function foo() {
+    console.log("A");
+    return Promise.resolve().then(() => {
+      console.log("B");
+    });
+  }
+
 */
 
 // ********************* 1. What is async? *************************
@@ -34,6 +85,8 @@ more readable and intuitive way compared to using Promises and .then() chains.
  -> await can only be used inside an async function.
  -> When await is used, the code execution is paused until the Promise is 
     resolved. Once resolved, the execution continues with the resolved value.
+-> await resumes via microtasks, which run before the next macrotask, causing 
+   already-resolved promises to continue immediately.
 */
 
 async function fetchData() {
@@ -52,7 +105,6 @@ Benefits of async/await:
 3. Cleaner Code: Avoids deeply nested .then() chains, leading to more 
                  maintainable and organized code.
 */
-
 
 
 //=================================================================================

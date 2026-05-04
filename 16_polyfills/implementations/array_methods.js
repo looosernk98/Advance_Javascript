@@ -134,6 +134,7 @@ Array.prototype.filter = function (fn, thisp) {
   
     for (let i = 0; i < this.length; i++) {
       if ((i === 0 && arguments.length === 1) || this[i] === undefined) {
+        // handling empty slots and no initila argument , eg. [1,,,3,,4]
          continue;
       }
   

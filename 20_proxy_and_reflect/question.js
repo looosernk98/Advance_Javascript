@@ -32,14 +32,14 @@ console.log(observedArray); // [1, 2]
 let arr = [];
 
 // // Overrides the push method directly on the array instance
-// arr.push = function (...items) {
-//   for (let item of items) {
-//     console.log(`Element added: ${item}`);
-//   }
-//   console.log("this: ", this)
-//   // this will refer array instance
-//   return Array.prototype.push.apply(this, items); // Call the original push
-// };
+arr.push = function (...items) {
+  for (let item of items) {
+    console.log(`Element added: ${item}`);
+  }
+  console.log("this: ", this)
+  // this will refer array instance
+  return Array.prototype.push.apply(this, items); // Call the original push
+};
 
 
 // Overrides the push method directly on the array instance using Object.defineProperty

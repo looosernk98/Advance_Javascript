@@ -17,6 +17,7 @@ anytime.
 ======================= Property Descriptors ===========================
 
 A property descriptor is an object that describes the attributes of a property. 
+
 These descriptors can be accessed and modified using 
 Object.getOwnPropertyDescriptor and Object.defineProperty.
 
@@ -147,7 +148,7 @@ Object.defineProperty(user, 'name', {
 })
 
 
-/**********************************************************************/
+/***************************** Accessor Descriptors *****************************************/
  let person = {
     firstName: "Niranjan",
     lastName: "Kumar"

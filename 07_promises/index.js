@@ -24,8 +24,8 @@ not pending.
 */
 
 const promise = new Promise((res, rej) => {
-    rej('REJECTED VALUE')
-    // res("RESOLVED VALUE")
+    // rej('REJECTED VALUE')
+    res("RESOLVED VALUE")
 })
 console.log('promise: ', promise);
 
