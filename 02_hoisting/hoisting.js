@@ -78,7 +78,8 @@ function add(a, b) {
 
 /*
  During the creation phase of the execution context, the JavaScript engine 
- places the add() function declaration in the heap memory. To be precise, the 
+ places the add() function declaration in the heap memory. 
+ To be precise:
  JavaScript engine creates an object of the Function type and a function reference 
  add that refers to the function object.
 

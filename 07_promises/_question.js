@@ -125,6 +125,124 @@ Promise.resolve("done")
 */
 
 
+//*****************************************************************/
+
+console.log("A");
+
+// Macro: []
+// Micro: []
+
+setTimeout(() => {
+  console.log("B");
+
+  Promise.resolve().then(() => {
+    console.log("C");
+  });
+
+}, 0);
+
+Promise.resolve()
+  .then(() => { // .then consumes/adopts/unpacks the state of internal promise Promise.resolve("E");
+    console.log("D");
+    return Promise.resolve("E");
+  })
+  .then((val) => {
+    console.log(val);
+
+    return new Promise((resolve) => {
+      console.log("F");
+      resolve("G");
+    });
+  })
+  .then((val) => {
+    console.log(val);
+  });
+
+(async function () {
+  console.log("H");
+
+  await Promise.resolve();
+
+  console.log("I");
+
+  await Promise.resolve();
+
+  console.log("J");
+})();
+
+console.log("K");
+
+/*
+Internal Behavior
+
+Conceptually JS does something like:
+
+const returnedPromise = Promise.resolve("A");
+
+returnedPromise.then(
+  value => resolveP2(value),
+  err => rejectP2(err)
+);
+
+Meaning:
+
+"When returnedPromise resolves,
+resolve p2 with same value."
+*/
+
+
+// ==============================================================================
+
+console.log("A");
+
+setTimeout(() => {
+  console.log("B");
+  Promise.resolve().then(() => {
+    console.log("C");
+  });
+}, 0);
+
+Promise.resolve()
+  .then(() => { // .then consumes/adopts/unpacks the state of internal promise Promise.resolve("E");
+    console.log("D");
+    return "E";
+  })
+  .then((val) => {
+    console.log(val);
+    console.log("F");
+    return "G"
+  })
+  .then((val) => {
+    console.log(val);
+  });
+
+(async function () {
+  console.log("H");
+  await Promise.resolve();
+  console.log("I");
+  await Promise.resolve();
+  console.log("J");
+})();
+
+console.log("K");
+
+
+// ===================================================================
+Promise.resolve()
+  .then(function a() {
+    Promise.resolve().then(function d() {})
+    Promise.resolve().then(function e() {})
+    throw new Error('OH TEH NOEZ!')
+    Promise.resolve().then(function f() {})
+  })
+  .catch(function b() {})
+  .then(function c() {})
+
+
+
+
+
+
 
 
   

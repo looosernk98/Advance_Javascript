@@ -127,6 +127,27 @@ test();
 // a = b  ❌ (b not initialized yet → TDZ)
 // b = 10
 
+var b = 5;
+
+function test(a = b, b = 10) {
+  console.log(a, b);
+}
+
+test(); // Output: 5 10
+
+function test(a = b) {
+  var b = 20;
+  console.log(a, b);
+}
+
+test(); // Output: ReferenceError: b is not defined
+/*
+Why? 
+Parameters have their own Environment Record (scope) that is separate from the 
+function body. The var b inside the function is hoisted to the top of the body, but 
+it is not visible to the parameters during their initialization.
+*/
+
 
 console.log(typeof a); // Even typeof cannot bypass TDZ
 let a = 10;

@@ -1,4 +1,59 @@
 //  references : 1.https://blog.bitsrc.io/understanding-currying-in-javascript-ceb2188c339
+/*
+Currying is more than just a functional programming exercise; it is a practical 
+way to create pre-configured function factories that reduce code repetition and 
+improve modularity. In the real world, you see it most often when one piece of 
+information is available early (like a config) and the rest comes later 
+(like user data)
+
+USE CASES:
+
+1. Reusable API Wrappers:
+   Instead of repeating HTTP methods and base URLs, you can curry a generic request 
+   function to create specialized ones.
+   - Base Function: request(method, url, data)
+   - Curried Use Case: Create get and post helpers once, then use them across the 
+     app.
+
+    const makeRequest = (method) => (url) => (data) => fetch(url, { method, body: JSON.stringify(data) });
+    const get = makeRequest('GET');
+    const post = makeRequest('POST');
+
+    // Usage is much cleaner
+    get('/profile')();
+    post('/users')({ name: 'Alice' });
+
+2. Configurable Logging & Analytics: 
+   Production apps often need to log messages with different levels (INFO, ERROR) 
+   or prefixes. Currying allows you to set the "level" once and reuse that specific 
+   logger everywhere.
+   Example: 
+   const errorLogger = logger('ERROR'); 
+
+   then simply call:
+   errorLogger('Something broke').
+   
+3. Dynamic UI Event Handlers (React/React Native):
+   In React, passing parameters to event handlers often results in messy inline 
+   functions. Currying lets you "pre-fill" an ID or index, which can also help 
+   with performance and cleaner JSX.
+   Example: 
+    <button onClick={handleDelete(item.id)}>
+      Delete
+    </button> 
+
+    - where handleDelete is a curried function.
+
+5. Domain Logic (Pricing & Validation):
+   Currying is highly effective for business rules that have several layers of 
+   calculation, like taxes, discounts, or shipping.E-commerce: 
+
+   Create a applyTax function pre-filled with a specific state's tax rate 
+   (e.g., const applyNYTax = calculateTax(0.08875)).
+*/
+
+
+
 
 
 // Write little code modules that can be reused and configured with ease, much 

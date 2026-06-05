@@ -105,7 +105,7 @@ A()
 
   ***** scope is always referred in terms of where the decalaration of function is written ****
 */
-function B(){ 
+function B(){
     console.log(a)
 }
 

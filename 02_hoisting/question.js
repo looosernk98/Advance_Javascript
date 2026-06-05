@@ -92,10 +92,13 @@ var a = 1;
 function b() {
     a = 10;
     return;
-    function a() {}
+    function a() {} // declaration of a inside local scope
 }
 b()
 console.log(a);
+// Inside the function b, the declaration function a() {} is hoisted to the top of the 
+// function's scope. Because function declarations take precedence, the name a inside b 
+// becomes a local variable
 
 // =================================== Question 10 =====================================
 
