@@ -1,4 +1,5 @@
 // https://www.tutorialsteacher.com/javascript/this-keyword-in-javascript
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
 
 // The this keyword in JavaScript is a fundamental concept used to refer to the 
 // object that is executing the current function. The value of this depends on how 
@@ -11,7 +12,7 @@
     Non Strict Mode                     |         Strict Mode
 1. If a function is present in object   | 1. If a function is present in object
     this will refer to <<object>> in    |    this will refer to <<global object>>                                      
-    which fuction is defined            |
+    which function is defined            |
 2. In global scope , this refers to     | 2. *** same behavior ***
     global(window) object               |   
 3. we can change the reference of this  | 3. *** same behavior ***
@@ -178,6 +179,7 @@ const obj3 = {
     }
  }
  obj5.print()
+
  "use strict"
  const hello = () => {
     console.log(this)

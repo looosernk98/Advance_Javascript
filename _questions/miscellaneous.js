@@ -89,8 +89,8 @@ async function f() {
   .catch(e => console.log('caught:', e.message));
 
 const arr = [1, 2, 3];
-arr.forEach(async (n) => {
-  await new Promise(r => setTimeout(r, 1000));
+arr.forEach(async (n, index) => {
+  await new Promise(r => setTimeout(r, 2000*(index+1)));
   console.log(n);
 });
 

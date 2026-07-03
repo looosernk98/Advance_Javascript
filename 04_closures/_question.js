@@ -195,7 +195,7 @@ couner :  2   innerCouneter 1
 let count = 0;
 function makeCounter() {
   return function() {
-    console.log(count++);
+    console.log(count++)
     let count = 10;
   }
 }

@@ -7,6 +7,11 @@ Closures are often used to create private variables that cannot be accessed or
 modified from outside a function. This is particularly useful for encapsulating 
 data and creating "private" methods in JavaScript.
 
+Arrow function also creates closure but it does not have its own 'this' context, 
+so it inherits 'this' from the parent scope. This makes arrow functions 
+less suitable for creating private variables in some cases, especially when 
+you need to use 'this' to access the private variables.
+
 */
 function createCounter() {
     let count = 0; // Private variable

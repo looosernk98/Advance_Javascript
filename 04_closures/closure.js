@@ -33,6 +33,11 @@ access to variables from their parent scopes, which can be crucial for callback 
 
 5. Memory Management: Closures play a role in managing memory. They ensure that variables 
 referenced by a closure are not garbage collected as long as the closure exists.
+
+
+Real world examples:
+
+1. Custom hooks retain access 
 */
 
 // Example 1 

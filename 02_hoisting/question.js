@@ -1,13 +1,13 @@
 // ================================ Question 1 ========================================
 
-console.log(a);
+console.log(a); // [Function: a]
 var a = 10;
 
 function a() {
   console.log("Function a");
 }
 
-console.log(typeof a);
+console.log(typeof a); // number
 
 // ================================= Question 2 =======================================
 console.log(foo);
@@ -92,7 +92,7 @@ var a = 1;
 function b() {
     a = 10;
     return;
-    function a() {} // declaration of a inside local scope
+    function a() {} // declaration of 'a' inside local scope
 }
 b()
 console.log(a);
@@ -111,16 +111,16 @@ function f(){
 
 f()
 
-console.log(b);
+console.log(b); // 90
 // ================================== Question 11======================================
 
 var x = 1;
 {
     console.log(x);
 
-    let x = 2;
+    var x = 2;
 
-    function x() {
+    function x() { // behaves like let declaration and is hoisted to the top of the block scope
         return 3;
     }
 }

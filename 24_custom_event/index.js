@@ -1,5 +1,40 @@
 
 /*
+
+A custom event is a user-defined event that allows different parts of an application 
+to communicate using the browser's event system.
+
+Why do we need Custom Events?
+
+- Loose coupling
+- Component communication
+- Communication with non-React code
+- Avoid direct function calls
+- Event-driven architecture
+- Useful in vanilla JS, Web Components, micro-frontends
+
+
+What does dispatchEvent() return?
+
+Returns
+ - true → nobody called preventDefault()
+- false → default prevented
+
+custom events also has bubbling , capturing and cancelable properties like native events
+
+Real-world use cases
+- Shopping cart updated
+- User logged in
+- Theme changed
+- Language changed
+- Notification received
+- Analytics tracking
+- Micro-frontend communication
+- Web Components communication, 
+
+Product Component -> dispatch("cartUpdated") -> Navbar updates count , Sidebar updates total, Analytics logs event
+
+
 const myEvent = new Event('myCustomEvent'); // 1. creation of custom event
 
 // 2. attaching custom event to document

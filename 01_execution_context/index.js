@@ -8,10 +8,11 @@ the value of the 'this' keyword.
 There are two types of context : global and functional
 
 An execution context has two phases:
-1. Creation phase: In this phase, the JavaScript engine creates the execution 
-                   context and sets up the script's environment. It determines 
-                   the values of variables and functions and sets up the scope 
-                   chain for the execution context.
+1. Creation phase: During this phase, the engine scans the code inside that 
+                  context and allocates memory space for:
+                  - Variables: Declared with var are allocated and initialized with the special value undefined.
+                  - Functions: The entire function body/definition is stored directly in memory.
+                  - The this keyword and Scope Chain: The environment references are established
 
 2. Execution phase: In this phase, the JavaScript engine executes the code in the 
                  execution context. It processes any statements or expressions 

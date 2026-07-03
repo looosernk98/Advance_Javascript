@@ -48,4 +48,47 @@ function getUserData(isSuccessful) {
   getUserData(false)
     .then(data => console.log("User data:", data))
     .catch(error => console.error("Error:", error));
+
+/*
+
+Whenever you return any Promise object (whether created via Promise.resolve() or 
+new Promise()) from inside a .then() callback, the JavaScript engine executes an 
+identical "unpacking" mechanism.According to the ECMAScript specification, 
+this process always requires 2 extra microtask ticks to fully unpack and pass the 
+resolved value down the chain.
+
+Why Promise.resolve() and new Promise() behave identically here:
+
+When a .then() callback finishes executing, the engine checks its return value.If it 
+returns a primitive (like 5 or "hello"), the engine immediately resolves the outer 
+chained promise in the current tick.If it returns a Promise instance, 
+the engine cannot immediately resolve the outer chained promise. 
+It must adopt the state of this returned promise.To safely adopt that state, the engine 
+treats Promise.resolve() and new Promise((res) => res()) as the exact same type of object: 
+a fulfilled Promise instance.
+
+*/
+
+// --- CHAIN A (Returns a promise instance, triggering the 2-tick unpack) ---
+Promise.resolve()
+    .then(() => {
+        console.log('A1: Promise 1');
+        return new Promise((res) => res()); // Or Promise.resolve()
+    })
+    .then(() => {
+        console.log('A2: Promise 2');
+    });
+
+// --- CHAIN B (Standard flat promise chain) ---
+Promise.resolve()
+    .then(() => {
+        console.log('B1');
+    })
+    .then(() => {
+        console.log('B2');
+    })
+    .then(() => {
+        console.log('B3');
+    });
+
   

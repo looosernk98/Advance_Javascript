@@ -202,6 +202,59 @@ Promise.resolve()
     });
 
 console.log('End');
+/*
+Start
+async 1
+End
+async 2
+Promise 1
+Promise 2
+Timeout
+
+*/
+
+//******************************************************************* */
+console.log('Start');
+
+setTimeout(() => console.log('Timeout'), 0);
+
+async function asyncFn() {
+    console.log('Async 1');
+    await new Promise((res, rej) => {
+        console.log("inner promise 1")
+        res("inner promise resolved")
+        console.log("inner promise 2")
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
+    console.log('Async 2');
+}
+
+asyncFn();
+
+Promise.resolve()
+    .then(() => {
+        console.log('Promise 1');
+        return Promise.resolve();
+    })
+    .then(() => {
+        console.log('Promise 2');
+    });
+
+console.log('End');
+
+/*
+Start
+Async 1
+inner promise 1
+inner promise 2
+End
+inner promise resolved
+Promise 1
+Async 2
+Promise 2
+Timeout
+*/
 
 //********************** Question 4 (HARD) ***************************/
 
